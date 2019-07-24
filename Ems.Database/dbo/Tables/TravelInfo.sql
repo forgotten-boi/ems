@@ -12,9 +12,13 @@
     [EndDate]      DATETIME2 (7)  NOT NULL,
     [StartTime]    DATETIME2 (7)  NOT NULL,
     [EndTime]      DATETIME2 (7)  NOT NULL,
+    [IsApproved]   BIT            NULL,
+    [RecieptDoc]   NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_TravelInfo] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_TravelInfo_Employee_EmployeeID] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([ID])
 );
+
+
 
 
 GO
