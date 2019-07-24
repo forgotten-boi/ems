@@ -1,0 +1,135 @@
+﻿@model EMS.Website.Models.AccountViewModels.RegisterViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="page-inner">
+
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center; font-weight:bold">Register New User</div>
+            <div class="panel-body">
+
+                @*@using (Html.BeginForm(method:FormMethod.Post,htmlAttributes:Html.Encode("multipart/form-data")))
+        {*@
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        <fieldset>
+
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @*<div class="form-group">
+                        @Html.LabelFor(model => model.Id)
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                            <div class="col-md-4">
+                                <div class="form-group" style="padding-right:20px">
+                                    @Html.LabelFor(model => model.Username)
+
+                                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.FirstName)
+
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group" style="padding-right:20px">
+                                    @Html.LabelFor(model => model.LastName)
+
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group" style="padding-right:20px">
+                                    @Html.LabelFor(model => model.DisplayPicture, "Post")
+
+                                    <input type="file" asp-for="DisplayPicture" id="DisplayPicture" accept="image/*" name="DisplayPicture" />
+                                    @Html.ValidationMessageFor(model => model.DisplayPicture, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group" style="padding-right:20px">
+                                    @Html.LabelFor(model => model.Email)
+
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="padding-right:20px">
+                                    @Html.Label("Roles")
+                                    <div class="form-control-static">
+                                        @foreach (var item in ViewBag.RoleId)
+                                        {
+                                            <input type="checkbox" name="SelectedRoles" value="@item.Name" class="checkbox-inline" />
+                                            <label>@item.Name</label>
+                                            @*@Html.Label(item.Name, new { @class = "control-label" })*@
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group" style="padding-right:20px">
+
+                                    @Html.LabelFor(model => model.Password)
+
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group" style="padding-right:20px">
+                                    @Html.LabelFor(model => model.ConfirmPassword)
+
+                                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <div class="col-md-6">
+
+                                    <button type="reset" class="btn btn-danger">रिसेट गर्नुहोस् ।</button>
+                                </div>
+                                <!-- Buttons -->
+                                <div class="col-md-6">
+                                    <input type="submit" value="अगाडि बढ्नुहोस् ।" id="btnSubmit" class="btn btn-success pull-right" />
+
+                                </div>
+
+                            </div>
+                        </fieldset>
+
+                    </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@

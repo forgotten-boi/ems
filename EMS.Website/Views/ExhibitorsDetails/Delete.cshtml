@@ -1,0 +1,195 @@
+﻿@model EMS.Entity.Entities.ExhibitorsDetail
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ExhibitorsDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NepaliName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NepaliName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EnglishName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.District)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.District)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Municipality)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.wada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.wada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tol)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tol)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PermissionDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PermissionDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DisplayTech)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DisplayTech)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HallType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HallType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HallCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HallCategory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HallCapacity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HallCapacity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectorName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectorName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxationReliefDetails)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TaxationReliefDetails)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Proprietor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Proprietor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProprietorEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProprietorEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProprietorPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProprietorPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirmName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirmName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HallPermissionDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HallPermissionDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyRegDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyRegDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckcommitteeDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CheckcommitteeDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ExhibPermissionDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExhibPermissionDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IncomeTaxDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IncomeTaxDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LocalBodyDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocalBodyDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

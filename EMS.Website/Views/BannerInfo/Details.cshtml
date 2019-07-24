@@ -1,0 +1,73 @@
+﻿@model EMS.Entity.DtoModel.BannerDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BannerInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NepaliName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NepaliName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EnglishName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterationNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegisterationNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShareHolderAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShareHolderAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShareHolderName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShareHolderName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShareHolderPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShareHolderPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FormRegDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FormRegDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxRegDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TaxRegDoc)
+        </dd>
+    
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BannerId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

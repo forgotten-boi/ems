@@ -1,0 +1,642 @@
+﻿@model EMS.Entity.DtoModel.MovieDto
+
+@{
+    List<EMS.Entity.Entities.Language> LanguageList = ViewBag.Languages;
+
+    ViewData["Title"] = "Edit";
+    ViewData["Nav"] = "Movie";
+    ViewData["Nav2"] = "Edit";
+
+}
+@section Breadcrumbs{
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-controller="Home" asp-action="Index">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-controller="MovieInfo" asp-action="Index">@ViewData["Nav"]</a>
+        </li>
+        <li class="breadcrumb-item active">@ViewData["Nav2"]: @Model.NepaliName </li>
+    </ol>
+}
+<div class="card-header">
+    <div class="panel-heading">चलचित्र दर्ता -@Model.EnglishName</div>
+    <div class="small-device-alert">
+        <div class="alert alert-danger">
+            For this operation you must have computer. It supports only on laptop, Desktop , PC .
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" id="form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="NepaliName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="NepaliName" class="form-control" />
+                        <span asp-validation-for="NepaliName" class="text-danger">
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="EnglishName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="EnglishName" class="form-control" />
+                        <span asp-validation-for="EnglishName" class="text-danger">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="ProducerEmail" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="ProducerEmail" class="form-control" />
+                        <span asp-validation-for="ProducerEmail" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="ProducerPhone" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="ProducerPhone" class="form-control" />
+                        <span asp-validation-for="ProducerPhone" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="BannerCompany" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="BannerCompany" class="form-control" />
+                        <span asp-validation-for="BannerCompany" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="DirectorName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="DirectorName" class="form-control" />
+                        <span asp-validation-for="DirectorName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="DirectorEngName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="DirectorEngName" class="form-control" />
+                        <span asp-validation-for="DirectorEngName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="CoDirector" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="CoDirector" class="form-control" />
+                        <span asp-validation-for="CoDirector" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="Narrator" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Narrator" class="form-control" />
+                        <span asp-validation-for="Narrator" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CoNarrator" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="CoNarrator" class="form-control" />
+                            <span asp-validation-for="CoNarrator" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="Sampadak" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Sampadak" class="form-control" />
+                        <span asp-validation-for="Sampadak" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Chhayakar" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="Chhayakar" class="form-control" />
+                            <span asp-validation-for="Chhayakar" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="DanceDirector" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="DanceDirector" class="form-control" />
+                        <span asp-validation-for="DanceDirector" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Musician" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="Musician" class="form-control" />
+                            <span asp-validation-for="Musician" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="SoundController" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="SoundController" class="form-control" />
+                        <span asp-validation-for="SoundController" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ActionDirector" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="ActionDirector" class="form-control" />
+                            <span asp-validation-for="ActionDirector" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="KalaCostume" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="KalaCostume" class="form-control" />
+                        <span asp-validation-for="KalaCostume" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Singer" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="Singer" class="form-control" />
+                            <span asp-validation-for="Singer" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="CoMusician" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="CoMusician" class="form-control" />
+                        <span asp-validation-for="CoMusician" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ArtistNameNep" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="ArtistNameNep" class="form-control" />
+                            <span asp-validation-for="ArtistNameNep" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="ArtistNameEng" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="ArtistNameEng" class="form-control" />
+                        <span asp-validation-for="ArtistNameEng" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ProducerName" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="ProducerName" class="form-control" />
+                            <span asp-validation-for="ProducerName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="CoProducerName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="CoProducerName" class="form-control" />
+                        <span asp-validation-for="CoProducerName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Language" class="control-label"></label>
+                        <div class="form-label-group">
+                            <select asp-for="Language" class="form-control">
+                                @foreach (var item in LanguageList)
+                                {
+                                    <option value="@item.EngName/@item.NepName">@item.NepName</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Language" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="Tech" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Tech" class="form-control" />
+                        <span asp-validation-for="Tech" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CamaraType" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="CamaraType" class="form-control" />
+                            <span asp-validation-for="CamaraType" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="MovCategory" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="MovCategory" class="form-control" />
+                        <span asp-validation-for="MovCategory" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Budget" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="Budget" class="form-control" />
+                            <span asp-validation-for="Budget" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="MovieLength" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="MovieLength" class="form-control" />
+                        <span asp-validation-for="MovieLength" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="InstrumentDesc" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="InstrumentDesc" class="form-control" />
+                            <span asp-validation-for="InstrumentDesc" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsChecked" /> @Html.DisplayNameFor(model => model.IsChecked)
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="CheckedDate" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="CheckedDate" class="form-control" />
+                        <span asp-validation-for="CheckedDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ReleasedDate" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="ReleasedDate" class="form-control" />
+                            <span asp-validation-for="ReleasedDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsReleased" /> @Html.DisplayNameFor(model => model.IsReleased)
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="ForeignRelease" /> @Html.DisplayNameFor(model => model.ForeignRelease)
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsCharitable" /> @Html.DisplayNameFor(model => model.IsCharitable)
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 padding-both">
+            <div style="clear:both;"></div>
+            <legend>निर्माण इजाजतपत्रको सम्बन्धमा </legend>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="StartDate" class="form-control" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="EndDate" class="form-control" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <legend>पोस्ट प्रोडक्सन  </legend>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="PostName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="PostName" class="form-control" />
+                        <span asp-validation-for="PostName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PostAddress" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input asp-for="PostAddress" class="form-control" />
+                            <span asp-validation-for="PostAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="MovieBannerDoc" class="control-label"></label>
+                            <div class="form-label-group">
+                                <input type="file" asp-for="MovieBannerDoc" id="MovieBannerDoc" name="MovieBannerDoc" accept="application/pdf" size="2048000" />
+                                <span asp-validation-for="MovieBannerDoc" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-md-6">
+                        <label asp-for="PostProdDoc" class="control-label"></label>
+                        <div class="form-label-group">
+                            <input type="file" asp-for="PostProdDoc" id="PostProdDoc" name="PostProdDoc" accept="application/pdf" size="2048000" />
+                            <span asp-validation-for="PostProdDoc" class="text-danger"></span>
+                        </div>
+                    </div>*@
+
+                </div>
+            </div>
+            @*
+                        <legend>संलग्न गर्नुपर्ने कागजातहरु </legend>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label asp-for="PermissionDoc" class="control-label"></label>
+                        <div class="form-label-group">
+                                <input type="file" asp-for="PermissionDoc" id="PermissionDoc" name="PermissionDoc" accept="application/pdf" size="2048000" />
+                                <span asp-validation-for="PermissionDoc" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ScriptDoc" class="control-label"></label>
+                            <div class="form-label-group">
+                                    <input type="file" asp-for="ScriptDoc" id="ScriptDoc" name="ScriptDoc" accept="application/pdf" size="2048000" />
+                                    <span asp-validation-for="ScriptDoc" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label asp-for="SongDoc" class="control-label"></label>
+                        <div class="form-label-group">
+                                    <input type="file" asp-for="SongDoc" id="SongDoc" name="SongDoc" accept="application/pdf" size="2048000" />
+                                    <span asp-validation-for="SongDoc" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ContractDoc" class="control-label"></label>
+                            <div class="form-label-group">
+                                    <input type="file" asp-for="ContractDoc" id="ContractDoc" name="ContractDoc" accept="application/pdf" size="2048000" />
+                                    <span asp-validation-for="ContractDoc" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label asp-for="SensorDoc" class="control-label"></label>
+                        <div class="form-label-group">
+                                    <input type="file" asp-for="SensorDoc" id="SensorDoc" name="SensorDoc" accept="application/pdf" size="2048000" />
+                                    <span asp-validation-for="SensorDoc" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                            <label asp-for="RegDoc" class="control-label"></label>
+                            <div class="form-label-group">
+                                    <input type="file" asp-for="RegDoc" id="RegDoc" name="RegDoc" accept="application/pdf" size="2048000" />
+                                    <span asp-validation-for="RegDoc" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+        </div> 
+        <div>
+
+        </div>
+        <input type="hidden" asp-for="MovieId" />
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input type="submit" value="Update" class="btn btn-primary pull-right" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+
+        function split(val) {
+            return val.split(/,\s*/);
+        }
+        function extractLast(term) {
+            return split(term).pop();
+        }
+        $(document).ready(function () {
+            $.getJSON("/ArtistInfo/GetArtistByName", function (availableTags) {
+                $("#ArtistNameEng")
+                    // don't navigate away from the field on tab when selecting an item
+                    .on("keydown", function (event) {
+                        if (event.keyCode === $.ui.keyCode.TAB &&
+                            $(this).autocomplete("instance").menu.active) {
+                            event.preventDefault();
+                        }
+                    })
+                    .autocomplete({
+                        minLength: 0,
+                        source: function (request, response) {
+                            // delegate back to autocomplete, but extract the last term
+                            response($.ui.autocomplete.filter(
+                                availableTags, extractLast(request.term)));
+                        },
+                        focus: function () {
+                            // prevent value inserted on focus
+                            return false;
+                        },
+                        select: function (event, ui) {
+                            var terms = split(this.value);
+                            // remove the current input
+                            terms.pop();
+                            // add the selected item
+                            terms.push(ui.item.value);
+                            // add placeholder to get the comma-and-space at the end
+                            terms.push("");
+                            this.value = terms.join(", ");
+                            return false;
+                        }
+                    });
+            });
+            $.getJSON("/ArtistInfo/GetArtistByName", function (availableTags) {
+                $("#ArtistNameNep")
+                    // don't navigate away from the field on tab when selecting an item
+                    .on("keydown", function (event) {
+                        if (event.keyCode === $.ui.keyCode.TAB &&
+                            $(this).autocomplete("instance").menu.active) {
+                            event.preventDefault();
+                        }
+                    })
+                    .autocomplete({
+                        minLength: 0,
+                        source: function (request, response) {
+                            // delegate back to autocomplete, but extract the last term
+                            response($.ui.autocomplete.filter(
+                                availableTags, extractLast(request.term)));
+                        },
+                        focus: function () {
+                            // prevent value inserted on focus
+                            return false;
+                        },
+                        select: function (event, ui) {
+                            var terms = split(this.value);
+                            // remove the current input
+                            terms.pop();
+                            // add the selected item
+                            terms.push(ui.item.value);
+                            // add placeholder to get the comma-and-space at the end
+                            terms.push("");
+                            this.value = terms.join(", ");
+                            return false;
+                        }
+                    });
+            });
+        });
+       </script>
+}

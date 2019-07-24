@@ -1,0 +1,13 @@
+1. Authentication and authorization - 16 h
+2. Database schema - 8 h
+3. Employee Form Design - 16h
+4. Team Lead form design - 8 hour
+5. Email Send and Report - 3day 
+6. Unit Testing - 4days 
+6. Q/A - 3 days
+
+
+travelexpenss
+travel expenses status
+bill (one travel expenses -> many bill)
+User

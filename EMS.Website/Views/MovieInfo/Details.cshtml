@@ -1,0 +1,310 @@
+﻿@model EMS.Entity.DtoModel.MovieDto
+
+@{
+    ViewData["Title"] = "Details";
+    ViewData["Nav"] = "Movie";
+    ViewData["Nav2"] = "Details";
+
+}
+@section Breadcrumbs{
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-controller="Home" asp-action="Index">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-controller="MovieInfo" asp-action="Index">@ViewData["Nav"]</a>
+            </li>
+            <li class="breadcrumb-item active">@ViewData["Nav2"]: @Model.EnglishName </li>
+        </ol>
+}
+<h2>Details</h2>
+
+<div>
+    <h4>MovieInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EnglishName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NepaliName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NepaliName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProducerEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProducerEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProducerPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProducerPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BannerCompany)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BannerCompany)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectorName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DirectorName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectorEngName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DirectorEngName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoDirector)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoDirector)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Narrator)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Narrator)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoNarrator)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoNarrator)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sampadak)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sampadak)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Chhayakar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Chhayakar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Musician)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Musician)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoundController)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoundController)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActionDirector)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActionDirector)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KalaCostume)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.KalaCostume)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Singer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Singer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoMusician)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoMusician)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtistNameEng)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArtistNameEng)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtistNameNep)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArtistNameNep)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProducerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProducerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoProducerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoProducerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Language)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Language)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tech)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tech)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CamaraType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CamaraType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MovCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MovCategory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Budget)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Budget)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieLength)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MovieLength)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstrumentDesc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstrumentDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsCompleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsChecked)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsChecked)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CheckedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsReleased)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsReleased)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleasedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReleasedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ForeignRelease)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ForeignRelease)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCharitable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsCharitable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostProdDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostProdDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PermissionDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PermissionDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ScriptDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ScriptDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SongDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SongDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContractDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SensorDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SensorDoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegDoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegDoc)
+        </dd>
+        
+    </dl>
+</div>

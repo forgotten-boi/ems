@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EMS.Website.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <div id="page-inner">
+        @*<hr />
+        <p>
+            <i class="fa fa-plus fa-2x"></i> @Html.ActionLink("Create New", "Create")
+            <a asp-action="Create" class="btn btn-primary">Create New</a>
+        </p>
+        <hr />*@
+        <div class="card-header">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Create New User
+            </a>
+        </div>
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="text-align:center;font-weight:bold">प्रयोगकर्ताहरु</div>
+                <div class="panel-body">
+
+
+                    <table class="table" id="tblDatatable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Username
+                                    @*@Html.DisplayNameFor(model => model.UserName)*@
+                                </th>
+                                <th>
+                                    Roles
+                                </th>
+                                <th>
+                                    नाम
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.JobPost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+
+                                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i class="fas fa-edit"></i></a> |
+                                        <a asp-action="Details" asp-route-id="@item.Id" title="Details"><i class="fas fa-info"></i></a> |
+                                        <a asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class="fas fa-trash"></i></a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>

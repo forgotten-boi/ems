@@ -1,0 +1,60 @@
+[{
+	"Comment": "Kilometers Driven (private Vehicle)",
+	"Order":1
+},
+{
+	"Comment": "Kilometer Expense: Rate 0.30",
+	"Order":2
+},
+{
+	"Comment": "Taxis & Airport Shuttles",
+	"Order":3
+},
+{
+	"Comment": "Car Rentals - (ONLY if not booked with EGENCIA)",
+	"Order":4
+},
+{
+	"Comment": "Parking & Tolls",
+	"Order":5
+},
+{
+	"Comment": "Lodging(room & tax only)",
+	"Order":6
+},
+{
+	"Comment": "Tipx (Except Meal)",
+	"Order":7
+},
+{
+	"Comment": "Telephone/Fax/Internet",
+	"Order":8
+},
+{
+	"Comment": "Plane Ticket(ONLY if not booked with EGENCIA)",
+	"Order":9
+},
+{
+	"Comment": "Train Ticket(ONLY if not booked with EGENCIA)",
+	"Order":10
+},
+{
+	"Comment": "Misc. Expenses (please explain below)",
+	"Order":11
+},
+{
+	"Comment": "Breakfast",
+	"Order":12
+},
+{
+	"Comment": "Lunch",
+	"Order":13
+},
+{
+	"Comment": "Dinner",
+	"Order":14
+},
+{
+	"Comment": "Verpflegungspauschale",
+	"Order":15
+}]

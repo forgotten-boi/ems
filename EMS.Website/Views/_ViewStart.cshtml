@@ -1,0 +1,16 @@
+﻿@{
+    var con = this.Context.Request;
+    var controller = ViewContext.RouteData.Values["Controller"].ToString();
+    var action = ViewContext.RouteData.Values["Action"].ToString();
+    string cLayout = "";
+    if(controller.ToLower() == "account")
+    {
+        cLayout = "~/Views/Shared/_BlankLayout.cshtml";
+    }
+    else
+    {
+        cLayout = "~/Views/Shared/_Layout.cshtml";
+    }
+    Layout = cLayout;
+
+}

@@ -1,0 +1,450 @@
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+                    <h1 class="page-header">वितरण : दर्ता</h1>
+</div>
+    <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
+        <div class="panel panel-red" >
+            <div class="panel-heading">वितरण दर्ता </div>
+            <div class="panel-body">
+              <div class="small-device-alert">
+                     <div class="alert alert-danger">
+                      For this operation you must have computer. It supports only on laptop, Desktop , PC .
+                     </div>
+                </div>
+                <form id="distributor_entry" method="post" action="{{url('admin_area/add_distributer')}}"   enctype="multipart/form-data">
+                    <div class="req-attention">Attention: '*' indicates necessary fields.  </div>
+                    {{csrf_field()}}
+                    <legend> १) वितरण गर्ने कम्पनी/फर्मको:</legend>
+                      <div class="sobiz-form-group">
+                          क) नाम :
+                          <div class="sobiz-form-sub-group">
+                            <div class="sb-row">
+                              <div class="col-sm-a">
+                                  नेपालीमा<span class="req"> * </span> :
+                              </div>
+                              <div class="col-sm-b">
+                                  <input type="text" name="name" value="{{ old('name') }}" placeholder=" आर.आर फिल्मस् " required>
+                              </div>
+                            </div> 
+                            <div class="sb-row">
+                              <div class="col-sm-a"> 
+                                  अंग्रेजीमा:<span class="req"> * </span> :
+                              </div>
+                              <div class="col-sm-b">
+                                  <input type="text" name="name_en" value="{{ old('name_en') }}" placeholder=" R.R Films" required>
+                              </div>
+                           </div> 
+                          </div>
+                      </div>
+                   
+                      <div class="sobiz-form-group">
+                          ख) ठेगाना<span class="req"> * </span>:                       
+                      <div class="sobiz-form-sub-group">
+                            <div class="sb-row">    
+                              <div class="col-sm-a">
+                                   जिल्ला <span class="req"> * </span>:
+                              </div>                              
+                              <div class="col-sm-b">
+                                  <select class="selectpicker" id="district" name="district">
+                                    <optgroup label="Province no. 1/प्रदेश न. १ ">
+                                    	<option value="Taplejung/ताप्लेजुङ">Taplejung/ताप्लेजुङ</option>
+                                    	<option value="Panchthar/पांचथर">Panchthar/पांचथर</option>
+                                    	<option value="Ilam/इलाम">Ilam/इलाम</option>
+                                    	<option value="Sankhuwasabha/संखुवासभा">Sankhuwasabha/संखुवासभा </option>
+                                    	<option value="Terhathum/तेह्रथुम">Terhathum/तेह्रथुम</option>
+                                    	<option value="Dhankuta/धनकुटा">Dhankuta/धनकुटा</option>
+                                    	<option value="Bhojpur/भोजपुर">Bhojpur/भोजपुर</option>
+                                    	<option value="Khotang/खोटाङ">Khotang/खोटाङ</option>
+                                    	<option value="Solukhumbu/सोलुखुम्बु">Solukhumbu/सोलुखुम्बु</option>
+                                    	<option value="Okhaldhunga/ओखलढुंगा">Okhaldhunga/ओखलढुंगा</option>
+                                    	<option value="Udayapur/उदयपुर"> Udayapur/उदयपुर</option>
+                                    	<option value="Jhapa/झापा">Jhapa/झापा</option>
+                                    	<option value="Morang/मोरङ"> Morang/मोरङ</option>
+                                    	<option value="Sunsari/सुनसरी">Sunsari/सुनसरी</option>
+                                    </optgroup>
+                                    <optgroup label="Province no. 2/प्रदेश न. २  ">
+                                    	<option value="Saptari/सप्तरी">Saptari/सप्तरी</option>
+                                    	<option value="Siraha/सिराहा">Siraha/सिराहा</option>
+                                    	<option value="Dhanusha/धनुषा">Dhanusha/धनुषा</option>
+                                    	<option value="Mahottari/महोत्तरी">Mahottari/महोत्तरी</option>
+                                    	<option value="Sarlahi/सर्लाही">Sarlahi/सर्लाही</option>
+                                    	<option value="Rautahat/रौतहट">Rautahat/रौतहट</option>
+                                    	<option value="Bara/बारा">Bara/बारा</option>
+                                    	<option value="Parsa/पर्सा">Parsa/पर्सा</option>
+                                    </optgroup>
+                                    <optgroup label="Province no. 3/प्रदेश न. ३  ">
+                                    	<option value="Dolakha/दोलखा">Dolakha/दोलखा</option>
+                                    	<option value="Ramechhap/रामेछाप">Ramechhap/रामेछाप</option>
+                                    	<option value="Sindhuli/सिन्धुली">Sindhuli/सिन्धुली</option>
+                                    	<option value="Kavrepalanchok/काभ्रेपलाञ्चोक">Kavrepalanchok/काभ्रेपलाञ्चोक</option>
+                                    	<option value="Sindhupalchok/सिन्धुपाल्चोक">Sindhupalchok/सिन्धुपाल्चोक</option>
+                                    	<option value="Rasuwa/रसुवा">Rasuwa/रसुवा</option>
+                                    	<option value="Nuwakot/नुवाकोट">Nuwakot/नुवाकोट</option>
+                                    	<option value="Dhading/धादिङ">Dhading/धादिङ</option>
+                                    	<option value="Chitwan/चितवन">Chitwan/चितवन</option>
+                                    	<option value="Makwanpur/मकवानपुर">Makwanpur/मकवानपुर</option>
+                                    	<option value="Bhaktapur/भक्तपुर"> Bhaktapur/भक्तपुर</option>
+                                    	<option value="Lalitpur/ललितपुर">Lalitpur/ललितपुर</option>
+                                    	<option value="Kathmandu/काठमाडौं" selected>Kathmandu/काठमाडौं</option>
+                                    </optgroup>
+                                    <optgroup label="Province no. 4/प्रदेश न. ४ ">
+                                    	<option value="Gorkha/गोर्खा">Gorkha/गोर्खा</option>
+                                    	<option value="Lamjung/लम्जुंग">Lamjung/लम्जुंग</option>
+                                    	<option value="Tanahun/तनहुँ">Tanahun/तनहुँ</option>
+                                    	<option value="Kaski/कास्की">Kaski/कास्की</option>
+                                    	<option value="Manang/मनाङ">Manang/मनाङ</option>
+                                    	<option value="Mustang/मुस्तांङ">Mustang/मुस्तांङ</option>
+                                    	<option value="Parbat/पर्बत">Parbat/पर्बत</option>
+                                    	<option value="Syangja/स्याङ्जा">Syangja/स्याङ्जा</option>
+                                    	<option value="Myagdi/म्याग्दी">Myagdi/म्याग्दी</option>
+                                    	<option value="Baglung/बाग्लुङ">Baglung/बाग्लुङ</option>
+                                    	<option value="Nawalparasi/नवलपरासी">Nawalparasi/नवलपरासी</option>
+                                    </optgroup>
+                                    	<optgroup label="Province no. 5/प्रदेश न. ५ ">
+                                    	<option value="Nawalparasi/नवलपरासी">Nawalparasi/नवलपरासी</option>
+                                    	<option value="Rupandehi/रुपन्देही">Rupandehi/रुपन्देही</option>
+                                    	<option value="Kapilvastu/कपिलवस्तु">Kapilvastu/कपिलवस्तु</option>
+                                    	<option value="Palpa/">Palpa/पाल्पा</option>
+                                    	<option value="Arghakhanchi/अर्घाखाँची">Arghakhanchi/अर्घाखाँची</option>
+                                    	<option value="Gulmi/गुल्मी">Gulmi/गुल्मी</option>
+                                    	<option value="Rukum/रुकुम">Rukum/रुकुम</option>
+                                    	<option value="Rolpa/रोल्पा">Rolpa/रोल्पा</option>
+                                    	<option value="Pyuthan/प्यूठान">Pyuthan/प्यूठान</option>
+                                    	<option value="Dang/दाङ">Dang/दाङ</option>
+                                    	<option value="Banke/बाँके">Banke/बाँके</option>
+                                    	<option value="Bardiya/बर्दिया">Bardiya/बर्दिया</option>
+                                    </optgroup>
+                                    	<optgroup label="Province no. 6/प्रदेश न. ६ ">
+                                    	<option value="Rukum/रुकुम">Rukum/रुकुम</option>
+                                    	<option value="Salyan/सल्यान">Salyan/सल्यान</option>
+                                    	<option value="Dolpa/डोल्पा">Dolpa/डोल्पा</option>
+                                    	<option value="Jumla/जुम्ला">Jumla/जुम्ला</option>
+                                    	<option value="Mugu/मुगु">Mugu/मुगु</option>
+                                    	<option value="Humla/हुम्ला">Humla/हुम्ला</option>
+                                    	<option value="Kalikot/कालिकोट">Kalikot/कालिकोट</option>
+                                    	<option value="Jajarkot/जाजरकोट">Jajarkot/जाजरकोट</option>
+                                    	<option value="Dailekh/दैलेख">Dailekh/दैलेख</option>
+                                    	<option value="Surkhet/सुर्खेत">Surkhet/सुर्खेत</option>
+                                    </optgroup>
+                                    	<optgroup label="Province no. 7/प्रदेश न. ७ ">
+                                    	<option value="Bajura/बाजुरा">Bajura/बाजुरा</option>
+                                    	<option value="Bajhang/बझाङ">Bajhang/बझाङ</option>
+                                    	<option value="Doti/डोटी">Doti/डोटी</option>
+                                    	<option value="Achham/अछाम">Achham/अछाम</option>
+                                    	<option value="Darchula/दार्चुला">Darchula/दार्चुला</option>
+                                    	<option value="Baitadi/बैतडी">Baitadi/बैतडी</option>
+                                    	<option value="Dadeldhura/डडेलधुरा">Dadeldhura/डडेलधुरा</option>
+                                    	<option value="Kanchanpur/कञ्चनपुर">Kanchanpur/कञ्चनपुर</option>
+                                    	<option value="Kailali/कैलाली">Kailali/कैलाली</option>
+                                    </optgroup>
+                                </select>
+                              </div>
+                            </div> 
+                            <div class="sb-row">    
+                              <div class="col-sm-a">
+                                   न.पा./गा.वि.स.<span class="req"> * </span>:
+                              </div>
+                              <div class="col-sm-b">
+                                  <input type="text" name="nagarpalika" value="{{ old('nagarpalika') }}" placeholder="का.म.पा " required>
+                              </div>
+                            </div>
+                            <div class="sb-row">    
+                              <div class="col-sm-a">
+                                  वडा.न. :
+                              </div>    
+                              <div class="col-sm-b">
+                                  <input type="number" name="wada" value="{{ old('wada') }}" placeholder=" 8 " >
+                              </div>
+                            </div>
+                            <div class="sb-row">    
+                              <div class="col-sm-a">
+                                  टोल :
+                              </div>    
+                              <div class="col-sm-b">
+                                  <input type="tole" name="tole" value="{{ old('tole') }}" placeholder=" चाबहिल" >
+                              </div>
+                            </div>   
+                        </div>
+                       </div>
+                     <legend>२. वितरण गर्ने चलचित्र<span class="req"> * </span>:
+                                <select class="selectpicker" name="film_native">
+                                    <option value="National(स्वदेशी)" selected>स्वदेशी</option>
+                                    <option value="International(विदेशी)">विदेशी</option>
+                                    <option value="National/International(स्वदेशी/विदेशी)">स्वदेशी/विदेशी</option>
+                                </select>
+                            </legend>
+                    <legend>३) चलचित्र वितरण इजाजतपत्र लिएको <span class="req"> * </span>:</legend>
+                             <div class="sobiz-form-sub-group">
+                               <div class="sb-row">
+                                 <div class="col-sm-a">सुरुको मिति <span class="req"> * </span>:</div>
+                                 <div class="col-sm-b"><input type="text" placeholder="2073-12-08" name="start_date" id="nepaliDate5" class="nepali-calendar" value="{{ old('start_date') }}" required></div>
+                         </div>
+                         <div class="sb-row">        
+                                 <div class="col-sm-a">अन्तिम मिति <span class="req"> * </span>:</div>
+                                 <div class="col-sm-b"><input type="text" placeholder="2073-12-31" name="end_date" id="nepaliDate6" class="nepali-calendar" value="{{ old('end_date') }}" required></div>
+                               </div>
+                            </div>                    
+                    <legend> ४) वितरक धनि वा प्रोपाइटरको:</legend>
+                    <div class="sobiz-form-sub-group">
+                           <div class="sb-row">
+                            <div class="col-sm-a">
+                                नाम <span class="req"> * </span> :
+                            </div>
+                            <div class="col-sm-b">
+                                <input type="text" name="owner" value="{{ old('owner') }}" placeholder=" प्रमोद कुमार यादव " required>
+                            </div>
+                          </div> 
+                          <div class="sb-row">
+                            <div class="col-sm-a"> 
+                                इमेल <span class="req"> * </span> :
+                            </div>
+                            <div class="col-sm-b">
+                                <input type="text" name="owner_email" value="{{ old('owner_email') }}" placeholder=" example@gmail.com" required>
+                            </div>
+                         </div>
+                         <div class="sb-row">
+                            <div class="col-sm-a"> 
+                                मोबाइल न.<span class="req"> * </span> :
+                            </div>
+                            <div class="col-sm-b">
+                                <input type="number" name="owner_mobile" value="{{ old('owner_mobile') }}" placeholder=" 9866002237" required>
+                            </div>
+                         </div>
+                       </div>   
+                      <legend> ५) संलग्न गर्नुपर्ने कागजातहरु:</legend>
+                         
+                      <div class="sobiz-form-sub-group">
+                        <div class="sb-row">
+                          <div class="col-md-a">क) कम्पनी दर्ताको प्रतिलिपि: </div><div class="col-md-b"><input type="file" name="company_darta" accept="application/pdf" ></div>
+                        </div>
+                        <div class="sb-row">
+                          <div class="col-md-a">ख) आयकर  चुक्ताको काग़ज़ातहरू:</div><div class="col-md-b"> <input type="file" name="company_kar" accept="application/pdf" ></div>
+                        </div>
+                         <div class="sb-row">
+                          <div class="col-md-a">ग) वितरण इजाज़तपत्रको प्रतिलिपि:</div><div class="col-md-b"> <input type="file" name="witaran_ijajat" accept="application/pdf" ></div>
+                        </div>
+                         <div class="sb-row">
+                          <div class="col-md-a">घ) दरखास्त फारमको प्रतिलिपि:</div><div class="col-md-b"> <input type="file" name="form_scan" accept="application/pdf" ></div>
+                         </div>
+                      </div>
+                        <div  class="progress" style="display:none;">
+          <div  class="progress-bar progress-bar-striped progress-bar-info active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" 
+                      style="width:0%">
+                     0%
+                 </div>
+                 </div>
+                    <input type="submit" class="btn btn-primary" value="submit" style="float:right;" />
+                     
+                </form>
+            </div>
+        </div>
+    </div>
+   </div> 
+</div>
+    <style>
+        .sobiz-form-group select.selectpicker{
+            width: 100px;
+        }
+        select.selectpicker{
+            border-radius: 5px;
+            max-width: 100%;
+            background: #efefef;
+            padding: 2px 10px;
+            margin: 5px 0px;
+            min-width: 138px;
+        }
+   </style>
+    <script>
+        
+        $(document).ready(function() {
+            $('#nepaliDate5').nepaliDatePicker({
+      npdMonth: true,
+      npdYear: true,
+      npdYearCount: 10
+    });
+       $('#nepaliDate6').nepaliDatePicker({
+      npdMonth: true,
+      npdYear: true,
+      npdYearCount: 10
+    });
+            $("#distributor_entry").validate({
+                rules: {
+                    name:{
+                        required: true,
+                        nepali:true,
+                    },
+                     name_en:{
+                        required: true,
+                       lettersonly:true,
+                    },
+                    district:{
+                        required: true,
+                    },
+                    nagarpalika:{
+                        required: true,
+                    },
+                    ijjajat_start_date:{
+                        required: true,
+                    },
+                    ijjajat_end_date:{
+                        required: true,
+                    },
+                    owner:{
+                        required: true,
+                    },
+                    owner_email:{
+                      required: true,
+                      email: true
+                    },
+                    owner_mobile:{
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    start_date:{
+                      required: true,
+                    },
+                    end_date:{
+                      required: true,
+                    },
+                },
+                messages: {
+                    name: {
+                        required: "(कृपया चलचित्रघरको नाम लेख्नुहोस नेपालीमा /Please specify the name in Nepali)",
+                    },
+                    name_en: {
+                        required: "(कृपया चलचित्रघरको नाम लेख्नुहोस अंग्रेजीमा /Please specify the name in English)",
+                    },                    
+                    district: {
+                        required: "(कृपया चलचित्रघर भएको जिल्लाको नाम लेख्नुहोस /Please specify the district name)",
+                    },
+                    nagarpalika: {
+                        required: "(कृपया चलचित्रघर भएको न.पा./गा.वि.स.को नाम  लेख्नुहोस /Please specify vdc/nagarpalika)",
+                    },
+                    ijjajat_start_date: {
+                        required: "(कृपया चलचित्र प्रदर्शन इजाजत लिएको सुरुको मिति /Please specify the required date)",
+                    },
+                    ijjajat_end_date: {
+                        required: "(कृपया चलचित्र प्रदर्शन इजाजत लिएको अन्तिम मिति /Please specify the required date)",
+                    },
+                    owner: {
+                            required: "(प्रोपाइटरको नाम लेख्नुहोस / Please provide propiter name)",
+                    },
+                    owner_email: {
+                            required: "(प्रोपाइटरको इमेल लेख्नुहोस / Please provide email address)",
+                            email: "Propiter email address must be in the format of name@domain.com"
+                    },
+                   owner_mobile : {
+                            required: "(प्रोपाइटरको मोबाइल नम्बर लेख्नुहोस / Please provide propiter mobile number)",
+                            minlength: " Mininmum least 10 integer long",
+                            maxlength: " Maximum 10 integer long"
+                    },
+                    start_date:{
+                      required: "कृपया वितरण इजाजतपत्र लिएको सुरुको मिति लेख्नुहोस",
+                    },
+                    end_date:{
+                      required: "कृपया वितरण इजाजतपत्र लिएको अन्तिम मिति लेख्नुहोस",
+                    },
+
+                },
+                submitHandler: function(form, e) {
+                 //$(form).ajaxSubmit();
+                 e.preventDefault();
+                $('.progress-bar').removeClass('progress-bar-danger').addClass('progress-bar-info');
+            var formData = new FormData(form);
+            $.ajax({
+                  type:'POST',
+            url: '{{url('/admin_area/add_distributer')}}',
+            data:formData,
+            beforeSend: function() {
+              $('.progress').show();
+          },
+           xhr: function() {
+                  var myXhr = $.ajaxSettings.xhr();
+                  if(myXhr.upload){
+                      myXhr.upload.addEventListener('progress',progress, false);
+                  }
+                   return myXhr;
+           },
+           cache:false,
+          contentType: false,
+          processData: false,
+
+          success:function(data){
+             //console.log(data);
+            //alert('data returned successfully');
+             
+                if(data.status=='4'){
+                    $('.progress-bar').text('Completed');
+                    $('#distributor_entry')[0].reset();
+                  swal(
+          'Congratulaton',
+           data.msg,
+          'success'
+         );
+      }
+      else{
+        $('.progress-bar').removeClass('progress-bar-info').addClass('progress-bar-danger');
+       $('.progress-bar').text('Failed Due to Errors');
+      swal(
+          'Oops...',
+          data.msg,
+          'error'
+        );
+      }
+           },
+
+          error: function(data){
+            if(data.status===422 ) {
+             var errors = data.responseJSON;
+             errorsHtml = '<ul>';
+
+                 $.each( errors , function( key, value ) {
+                     errorsHtml += '<li>' + value[0] + '</li>'; //showing only the first error.
+                     });
+                     errorsHtml += '</ul>';
+                 console.log(errorsHtml);
+                  $('.progress-bar').removeClass('progress-bar-info').addClass('progress-bar-danger');
+                 $('.progress-bar').text('Failed Due to errors');
+                 swal(
+        'Failed...',
+        errorsHtml,
+        'error'
+      );
+      }else{
+         console.log(errors);
+                     swal(
+          'Oops...',
+          data,
+          'error'
+      );
+      }
+           }
+         });
+
+        e.preventDefault();
+                 }
+            })
+
+        });
+        
+        function progress(e){
+      if(e.lengthComputable){
+          var max = e.total;
+          var current = e.loaded;
+           var Percentage = parseInt((current * 100)/max);
+          console.log(Percentage);
+               $('.progress-bar').css('width', Percentage+'%').attr('aria-valuenow', Percentage);
+    $('.progress-bar').text(Percentage+'%');
+          if(Percentage >= 100)
+           {
+            // process completed  
+            $('.progress-bar').css('width','100%').attr('aria-valuenow', '100');
+    $('.progress-bar').text('Processsing');
+          }
+         }  
+  }
+    </script>
+@endsection

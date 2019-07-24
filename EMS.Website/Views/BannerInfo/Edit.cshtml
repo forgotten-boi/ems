@@ -1,0 +1,75 @@
+﻿@model EMS.Entity.DtoModel.BannerDto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>BannerInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" id="form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NepaliName" class="control-label"></label>
+                <input asp-for="NepaliName" class="form-control" />
+                <span asp-validation-for="NepaliName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishName" class="control-label"></label>
+                <input asp-for="EnglishName" class="form-control" />
+                <span asp-validation-for="EnglishName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisterationNo" class="control-label"></label>
+                <input asp-for="RegisterationNo" class="form-control" />
+                <span asp-validation-for="RegisterationNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegDate" class="control-label"></label>
+                <input asp-for="RegDate" class="form-control" />
+                <span asp-validation-for="RegDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShareHolderAddress" class="control-label"></label>
+                <input asp-for="ShareHolderAddress" class="form-control" />
+                <span asp-validation-for="ShareHolderAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShareHolderName" class="control-label"></label>
+                <input asp-for="ShareHolderName" class="form-control" />
+                <span asp-validation-for="ShareHolderName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShareHolderPhone" class="control-label"></label>
+                <input asp-for="ShareHolderPhone" class="form-control" />
+                <span asp-validation-for="ShareHolderPhone" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="FormRegDoc" class="control-label"></label>
+                <input type="file" asp-for="FormRegDoc" id="FormRegDoc" name="FormRegDoc" accept="application/pdf" size="2048000" />
+                <span asp-validation-for="FormRegDoc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxRegDoc" class="control-label"></label>
+                <input type="file" asp-for="TaxRegDoc" id="TaxRegDoc" name="TaxRegDoc" accept="application/pdf" size="2048000" />
+                <span asp-validation-for="TaxRegDoc" class="text-danger"></span>
+            </div>*@
+            <input type="hidden" asp-for="BannerId" />
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
