@@ -53,6 +53,7 @@ namespace EMS.Entity.Entities
         [DataType(DataType.Time)]
         public DateTime EndTime { get; set; }
 
+        public bool? IsApproved { get; set; }
         public virtual ApprovalInfo ApprovalInfo { get; set; }
 
         public virtual ICollection<TravelExpenses> TravelExpenses { get; set; }

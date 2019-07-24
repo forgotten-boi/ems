@@ -57,6 +57,27 @@ namespace EMS.Entity.DtoModel
         [DataType(DataType.Time)]
         public DateTime EndTime { get; set; }
 
+        public bool? IsApproved { get; set; }
+
+        public string GetApproval
+        {
+            get
+            {
+                switch (IsApproved)
+                {
+                    case true:
+                        return "Approved";
+                    case false:
+                        return "Rejected";
+                    case null:
+                        return "Pending";
+                    default:
+                        return "pending";
+                }
+            }
+
+        }
+
     }
 
     public class ApprovalDto
