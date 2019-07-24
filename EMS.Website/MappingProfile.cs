@@ -9,7 +9,7 @@ namespace EMS.Website
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<EmployeeInfo, EmployeeDto>().ForMember(x => x.EmployeeId, opts => opts.MapFrom(x => x.ID)).ReverseMap();
+          
             CreateMap<DistributersDetail, DistributerDto>().ForMember(x => x.DistributerId, opts => opts.MapFrom(x => x.ID))
                 .ForMember(y=> y.RegDoc, z=>z.Ignore())
                 .ForMember(y=> y.CompanyRegDoc, z=>z.Ignore())
@@ -40,8 +40,26 @@ namespace EMS.Website
                 .ForMember(y => y.SongDoc, z => z.Ignore())
                 .ForMember(y => y.MovieBannerDoc, z => z.Ignore())
                 .ReverseMap();
+
+
+
+            CreateMap<EmployeeInfo, EmployeeDto>().ForMember(x => x.EmployeeId, opts => opts.MapFrom(x => x.ID)).ReverseMap();
+
+            CreateMap<TravelInfo, TravelDto>().ForMember(x => x.TravelId, opts => opts.MapFrom(x => x.ID))
+                .ForMember(y => y.RecieptDoc, z => z.Ignore())
+                .ReverseMap();
+            CreateMap<TravelExpenses, TravelExpenseDto>().ForMember(x => x.TravelExpId, opts => opts.MapFrom(x => x.ID))
+                .ReverseMap();
            
-            CreateMap<FilterResource, Filter>().ReverseMap();
+            CreateMap<ApprovalInfo, ApprovalDto>().ForMember(x => x.ApprovalId, opts => opts.MapFrom(x => x.ID))
+                .ReverseMap();
+            CreateMap<MiscExpenses, MiscExpenseDto>().ForMember(x => x.MiscExpId, opts => opts.MapFrom(x => x.ID))
+                .ReverseMap();
+            CreateMap<EntertainmentFB, EntertainmentFBDto>().ForMember(x => x.EntertainmentFBId, opts => opts.MapFrom(x => x.ID))
+                .ReverseMap();
+
+            CreateMap<MstExpenses, MstExpenseDto>().ForMember(x => x.MstExpId, opts => opts.MapFrom(x => x.ID))
+                .ReverseMap();
             //CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
 
         }

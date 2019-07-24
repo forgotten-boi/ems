@@ -7,7 +7,25 @@ using System.Threading.Tasks;
 
 namespace EMS.Services.Interface
 {
-    public interface IEmployeeService : IApplicationService<EmployeeInfo,int>
-    { 
+    public interface IEmployeeService : IApplicationService<EmployeeInfo, int>
+    {
+    }
+    public interface IApprovalInfoService : IApplicationService<ApprovalInfo, int>
+    {
+    }
+    public interface ITravelInfoService : IApplicationService<TravelInfo, int>
+    {
+    }
+    public interface IMiscExpensesService : IApplicationService<MiscExpenses, int>
+    {
+    }
+    public interface IEntertainmentFBService : IApplicationService<EntertainmentFB, int>
+    {
+    }
+    public interface ITravelExpensesService : IApplicationService<TravelExpenses, int>
+    {
+    }
+    public interface IMstExpensesService : IApplicationService<MstExpenses, int>
+    {
     }
 }

@@ -54,7 +54,12 @@
 	"Comment": "Dinner",
 	"Order":14
 },
-{
-	"Comment": "Verpflegungspauschale",
-	"Order":15
-}]
+  {
+    "Comment": "Verpflegungspauschale",
+    "Order": 15
+  },
+  {
+    "Comment": "Entertainment F&B (please explain below)",
+    "Order":  16
+  }
+]

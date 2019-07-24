@@ -22,6 +22,7 @@ namespace EMS.DataAccess
         public DbSet<TravelExpenses> TravelExpenses { get; set; }
   
         public DbSet<ApprovalInfo> ApprovalInfo { get; set; }
+        public DbSet<EntertainmentFB> EntertainmentFB { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

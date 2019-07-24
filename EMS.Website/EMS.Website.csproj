@@ -9,6 +9,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ArtistInfo\**" />
+    <Compile Remove="Views\BannerInfo\**" />
+    <Compile Remove="Views\DistributerReg\**" />
+    <Compile Remove="Views\ExhibitorsDetails\**" />
+    <Compile Remove="Views\MovieInfo\**" />
+    <Compile Remove="Views\ProducerProfile\**" />
+    <Content Remove="Views\ArtistInfo\**" />
+    <Content Remove="Views\BannerInfo\**" />
+    <Content Remove="Views\DistributerReg\**" />
+    <Content Remove="Views\ExhibitorsDetails\**" />
+    <Content Remove="Views\MovieInfo\**" />
+    <Content Remove="Views\ProducerProfile\**" />
+    <EmbeddedResource Remove="Views\ArtistInfo\**" />
+    <EmbeddedResource Remove="Views\BannerInfo\**" />
+    <EmbeddedResource Remove="Views\DistributerReg\**" />
+    <EmbeddedResource Remove="Views\ExhibitorsDetails\**" />
+    <EmbeddedResource Remove="Views\MovieInfo\**" />
+    <EmbeddedResource Remove="Views\ProducerProfile\**" />
+    <None Remove="Views\ArtistInfo\**" />
+    <None Remove="Views\BannerInfo\**" />
+    <None Remove="Views\DistributerReg\**" />
+    <None Remove="Views\ExhibitorsDetails\**" />
+    <None Remove="Views\MovieInfo\**" />
+    <None Remove="Views\ProducerProfile\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\ArtistInfoController.cs" />
+    <Compile Remove="Controllers\BannerInfoController.cs" />
+    <Compile Remove="Controllers\DistributerRegController.cs" />
+    <Compile Remove="Controllers\ExhibitorsDetailsController.cs" />
+    <Compile Remove="Controllers\MovieInfoController.cs" />
+    <Compile Remove="Controllers\ProducerProfileController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\images\logo.png" />
   </ItemGroup>
   <!--<ItemGroup>

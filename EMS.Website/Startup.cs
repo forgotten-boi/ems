@@ -47,8 +47,6 @@ namespace EMS.Website
             services.AddScoped(typeof(IDistributersDetailService), typeof(DistributersDetailService));
             services.AddScoped(typeof(IExhibitorsDetailService), typeof(ExhibitorsDetailService));
             services.AddScoped(typeof(IBannerInfoService), typeof(BannerInfoService));
-            services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
-            services.AddScoped(typeof(IApprovalInfoService), typeof(ApprovalInfoService));
 
             services.AddScoped(typeof(IArtistInfoRepository), typeof(ArtistInfoRepository));
             services.AddScoped(typeof(IMovieInfoRepository), typeof(MovieInfoRepository));
@@ -56,8 +54,23 @@ namespace EMS.Website
             services.AddScoped(typeof(IDistributersDetailRepository), typeof(DistributersDetailRepository));
             services.AddScoped(typeof(IExhibitorsDetailRepository), typeof(ExhibitorsDetailRepository));
             services.AddScoped(typeof(IBannerRepository), typeof(BannerRepository));
+
+            services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
+            services.AddScoped(typeof(IApprovalInfoService), typeof(ApprovalInfoService));
+            services.AddScoped(typeof(ITravelInfoService), typeof(TravelInfoService));
+            services.AddScoped(typeof(IMiscExpensesService), typeof(MiscExpensesService));
+            services.AddScoped(typeof(IEntertainmentFBService), typeof(EntertainmentFBService));
+            services.AddScoped(typeof(ITravelExpensesService), typeof(TravelExpensesService));
+            services.AddScoped(typeof(IMstExpensesService), typeof(MstExpensesService));
+
+         
             services.AddScoped(typeof(IEmployeeRepository), typeof(EmployeeRepository));
             services.AddScoped(typeof(IApprovalInfoRepository), typeof(ApprovalInfoRepository));
+            services.AddScoped(typeof(ITravelInfoRepository), typeof(TravelInfoRepository));
+            services.AddScoped(typeof(ITravelExpensesRepository), typeof(TravelExpensesRepository));
+            services.AddScoped(typeof(IMiscExpensesRepository), typeof(MiscExpensesRepository));
+            services.AddScoped(typeof(IEntertainmentFBRepository), typeof(EntertainmentFBRepository));
+            services.AddScoped(typeof(IMstExpensesRepository), typeof(MstExpensesRepository));
 
             services.AddTransient<IEmailSender, EmailSender>();
 

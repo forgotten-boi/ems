@@ -32,6 +32,7 @@ namespace EMS.Entity.Entities
         public virtual EmployeeInfo EmployeeInfo { get; set; }
         public string Destination { get; set; }
         public string Purpose { get; set; }
+        public string RecieptDoc { get; set; }
 
         private DateTime UpdateDate;
         public DateTime Date
@@ -72,7 +73,13 @@ namespace EMS.Entity.Entities
         public double TotalExpenses { get; set; }
     }
 
-    public class MiscExpenses
+    public class MiscExpenses : BaseEntity<int>
+    {
+        public string Comment { get; set; }
+        public double Price { get; set; }
+        public DateTime Date { get; set; }
+    }
+    public class EntertainmentFB : BaseEntity<int>
     {
         public string Comment { get; set; }
         public double Price { get; set; }

@@ -20,6 +20,54 @@ namespace EMS.Services.Repositories
 
         }
     }
+    public class TravelInfoService : ApplicationService<TravelInfo, int>, ITravelInfoService
+    {
+        public TravelInfoService(ITravelInfoRepository TravelInfoRepository) : base(TravelInfoRepository)
+        {
+
+        }
+    }
+    public class ApprovalInfoService : ApplicationService<ApprovalInfo, int>, IApprovalInfoService
+    {
+        public ApprovalInfoService(IApprovalInfoRepository ApprovalInfoRepository) : base(ApprovalInfoRepository)
+        {
+
+        }
+    }
+    public class MiscExpensesService : ApplicationService<MiscExpenses, int>, IMiscExpensesService
+    {
+        public MiscExpensesService(IMiscExpensesRepository MiscExpensesRepository) : base(MiscExpensesRepository)
+        {
+
+        }
+    }
+    public class EntertainmentFBService : ApplicationService<EntertainmentFB, int>, IEntertainmentFBService
+    {
+        public EntertainmentFBService(IEntertainmentFBRepository EntertainmentFBRepository) : base(EntertainmentFBRepository)
+        {
+
+        }
+    }
+    public class TravelExpensesService : ApplicationService<TravelExpenses, int>, ITravelExpensesService
+    {
+        public TravelExpensesService(ITravelExpensesRepository TravelExpensesRepository) : base(TravelExpensesRepository)
+        {
+
+        }
+    }
+    public class MstExpensesService : ApplicationService<MstExpenses, int>, IMstExpensesService
+    {
+        public MstExpensesService(IMstExpensesRepository MstExpensesRepository) : base(MstExpensesRepository)
+        {
+
+        }
+    }
+   
+
+}
+
+namespace EMS.Services.Repositories
+{
     public class ProducerDetailService : ApplicationService<ProducerDetail, int>, IProducerDetailService
     {
         public ProducerDetailService(IProducerDetailRepository producerDetailRepository) : base(producerDetailRepository)
@@ -27,6 +75,7 @@ namespace EMS.Services.Repositories
 
         }
     }
+
     public class ExhibitorsDetailService : ApplicationService<ExhibitorsDetail, int>, IExhibitorsDetailService
     {
         public ExhibitorsDetailService(IExhibitorsDetailRepository exhibitorDetailRepository) : base(exhibitorDetailRepository)
@@ -55,13 +104,7 @@ namespace EMS.Services.Repositories
 
         }
     }
-    public class ApprovalInfoService : ApplicationService<ApprovalInfo, int>, IApprovalInfoService
-    {
-        public ApprovalInfoService(IApprovalInfoRepository approvalsInfoRepository) : base(approvalsInfoRepository)
-        {
-
-        }
-    }
+    
     public class BannerInfoService : ApplicationService<BannerInfo, int>, IBannerInfoService
     {
         public BannerInfoService(IBannerRepository bannerInfoRepository) : base(bannerInfoRepository)
@@ -69,5 +112,4 @@ namespace EMS.Services.Repositories
 
         }
     }
-
 }
