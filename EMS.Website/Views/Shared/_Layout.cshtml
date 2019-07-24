@@ -15,11 +15,7 @@
 
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin.css" rel="stylesheet">
-    <!--Nepali Datepicker-->
-    <link rel="stylesheet" href="~/lib/nepali-datepicker/nepali.datepicker.v2.2.min.css">
-
-    <!--Project css-->
-    <link rel="stylesheet" href="~/css/EMS.css" />
+    
 </head>
 <body id="page-top">
     @using Microsoft.AspNetCore.Identity
@@ -99,13 +95,7 @@
                         <span>Expenses Management</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="BannerInfo" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>ब्यानर व्यवस्थापन</span>
-                    </a>
-                </li>
-            }
+             }
             @if (User.IsInRole("Distributer") || User.IsInRole("Admin"))
             {
                 <li class="nav-item">
