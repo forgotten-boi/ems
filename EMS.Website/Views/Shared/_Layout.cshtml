@@ -96,7 +96,7 @@
                     </a>
                 </li>
              }
-            @if (User.IsInRole("Distributer") || User.IsInRole("Admin"))
+            @*if (User.IsInRole("Distributer") || User.IsInRole("Admin"))
             {
                 <li class="nav-item">
                     <a is-active-route class="nav-link" asp-controller="DistributerReg" asp-action="Index">
@@ -135,14 +135,10 @@
             </a>
         </li> -->
             }
+                *@
             @if (User.IsInRole("Admin"))
             {
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="ArtistInfo" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>कलाकार व्यवस्थापन</span>
-                    </a>
-                </li>
+               
                 <li class="nav-item">
                     <a is-active-route class="nav-link" asp-area="" asp-controller="UserAdmin" asp-action="Index">
                         <i class="fas fa-fw fa-chart-area"></i>
@@ -241,16 +237,7 @@
     <!--Nepali datepicker-->
     <script type="text/javascript" src="~/lib/nepali-datepicker/nepali.datepicker.v2.2.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-
-            //$('.nepali-calendar').nepaliDatePicker();
-            $('[type=date]').nepaliDatePicker({
-                npdMonth: true,
-                npdYear: true,
-            });
-        });
-    </script>
+   
 
     <script>
         $(document).ready(function () {
