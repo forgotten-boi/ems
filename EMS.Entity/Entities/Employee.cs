@@ -17,14 +17,12 @@ namespace EMS.Entity.Entities
         [EmailAddress]
         public string Email { get; set; }
     
-        public virtual ICollection<TravelInfo> TravelInfos { get; set; }
+        //public virtual ICollection<TravelInfo> TravelInfos { get; set; }
     }
 
     public class TravelInfo : BaseEntity<int>
     {
-        [ForeignKey("EmployeeInfo")]
-        public int EmployeeID { get; set; }
-        public virtual EmployeeInfo EmployeeInfo { get; set; }
+
 
         [Required]
         public string EmployeeFName { get; set; }

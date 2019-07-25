@@ -26,7 +26,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.EmployeeID)
+                    Employee Name
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Destination)
@@ -53,53 +53,54 @@
         <tbody>
             @foreach (var item in Model)
             {
-                  var cssClass = "";
-                    if(item.IsApproved == true)
-                     { 
-                        cssClass = "success";
-                     }
-                    else
-                     {
-                        cssClass = item.IsApproved == false ? "danger" : "primary";
-                     }
-            <tr>
+                var cssClass = "";
+                if (item.IsApproved == true)
+                {
+                    cssClass = "success";
+                }
+                else
+                {
+                    cssClass = item.IsApproved == false ? "danger" : "primary";
+                }
+                var EmployeeName = item.EmployeeFName + " " + item.EmployeeLName;
+                <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmployeeID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Destination)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Purpose)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    @if (User.IsInRole("Admin") || User.IsInRole("TeamLead"))
-                    {
+                    <td>
+                        @EmployeeName
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Destination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Purpose)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Admin") || User.IsInRole("TeamLead"))
+                        {
 
-                        <button type="button" class="btn btn-@cssClass" style="min-width: 96px" data-toggle="modal" data-expenseid="@item.TravelId" data-target="#approvalModal" data-expensename="@item.Purpose">@item.GetApproval</button>
-                    }
-                    else
-                    {
-                        <button type="button" class="btn btn-@cssClass" style="min-width: 96px">@item.GetApproval</button>
-                    }
+                            <button type="button" class="btn btn-@cssClass" style="min-width: 96px" data-toggle="modal" data-expenseid="@item.TravelId" data-target="#approvalModal" data-expense-name="@item.Purpose">@item.GetApproval</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-@cssClass" style="min-width: 96px">@item.GetApproval</button>
+                        }
 
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.TravelId" title="Edit"><i class="fas fa-edit"></i></a> |
-                    <a asp-action="Details" asp-route-id="@item.TravelId" title="Details"><i class="fas fa-info"></i></a> |
-                    <a asp-action="Delete" asp-route-id="@item.TravelId" title="Delete"><i class="fas fa-trash"></i></a>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.TravelId" title="Edit"><i class="fas fa-edit"></i></a> |
+                        <a asp-action="Details" asp-route-id="@item.TravelId" title="Details"><i class="fas fa-info"></i></a> |
+                        <button onclick="DeleteExpenses(@item.TravelId)" asp-route-id="@item.TravelId" title="Delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -117,11 +118,11 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="expense-name" class="col-form-label">Employee Name:</label>
+                        <label for="Purpose" class="col-form-label">Purpose:</label>
                         <input type="text" readonly class="form-control" id="expense-name">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Comment:</label>
+                        <label for="Comment" class="col-form-label">Comment:</label>
                         <textarea class="form-control" id="message-text"></textarea>
                     </div>
                 </form>
@@ -138,7 +139,7 @@
     <script>
         $('#approvalModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
-            var expense = button.data('expensename') // Extract info from data-* attributes
+            var expense = button.data('expense-name') // Extract info from data-* attributes
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
@@ -162,19 +163,33 @@
 
         function Approval(id, status) {
             $.ajax({
-                url: '/Expenses/Approval?id=' + id + '&status=' + status + '&comment=' + $("#message-text").val() +'',
+                url: '/Expenses/Approval?id=' + id + '&status=' + status + '&comment=' + $("#message-text").val() + '',
                 type: "GET",
                 dataType: "JSON",
                 success: function (data) {
                     console.log(data);
-                     $('#approvalModal').hide();
-                    alert("Your Form is Submitted!");
+                    $('#approvalModal').hide();
+                    alert("Reciept has been approved!");
                     location.reload(true);
                 }
             });
 
         }
-
+        function DeleteExpenses(travelId) { }
+            if (confirm("Are you sure you want to delete?")) {
+                $.ajax({
+                    url: '/Expenses/Delete?id=' + id + '',
+                    type: "GET",
+                    dataType: "JSON",
+                    success: function (data) {
+                        console.log(data);
+                     
+                        alert("The reciept is Deleted!");
+                        location.reload(true);
+                    }
+                });
+            }
+        }
     </script>
 
 }

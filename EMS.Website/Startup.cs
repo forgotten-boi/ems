@@ -16,6 +16,7 @@ using NLog.Web;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
 using EMS.Services.IServices;
+using EMS.Services.Services;
 
 namespace EMS.Website
 {
@@ -31,13 +32,19 @@ namespace EMS.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
 
             // Add application services.
-         
-        
+            services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
+            services.AddScoped(typeof(IApprovalInfoService), typeof(ApprovalInfoService));
+            services.AddScoped(typeof(ITravelInfoService), typeof(TravelInfoService));
+            services.AddScoped(typeof(IMiscExpensesService), typeof(MiscExpensesService));
+            services.AddScoped(typeof(IEntertainmentFBService), typeof(EntertainmentFBService));
+            services.AddScoped(typeof(ITravelExpensesService), typeof(TravelExpensesService));
+            services.AddScoped(typeof(IMstExpensesService), typeof(MstExpensesService));
 
-         
+
+
             services.AddScoped(typeof(IEmployeeRepository), typeof(EmployeeRepository));
             services.AddScoped(typeof(IApprovalRepository), typeof(ApprovalRepository));
             services.AddScoped(typeof(ITravelInfoRepository), typeof(TravelInfoRepository));

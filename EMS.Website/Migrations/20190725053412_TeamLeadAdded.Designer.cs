@@ -4,14 +4,16 @@ using EMS.Website.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EMS.Website.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190725053412_TeamLeadAdded")]
+    partial class TeamLeadAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,7 +79,9 @@ namespace EMS.Website.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("TeamLeadId");
+                    b.HasIndex("TeamLeadId")
+                        .IsUnique()
+                        .HasFilter("[TeamLeadId] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -194,9 +198,9 @@ namespace EMS.Website.Migrations
 
             modelBuilder.Entity("EMS.Website.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("EMS.Website.Models.ApplicationUser", "TeamLead")
-                        .WithMany("Employee")
-                        .HasForeignKey("TeamLeadId");
+                    b.HasOne("EMS.Website.Models.ApplicationUser", "Employee")
+                        .WithOne("TeamLead")
+                        .HasForeignKey("EMS.Website.Models.ApplicationUser", "TeamLeadId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -80,7 +80,6 @@
 
   <ItemGroup>
     <Folder Include="logs\" />
-    <Folder Include="wwwroot\lib\nepali-datepicker\" />
   </ItemGroup>
 
 </Project>

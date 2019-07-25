@@ -67,6 +67,17 @@ namespace EMS.Website.Controllers
             //Get the list of Roles
             //ViewBag.RoleId = new SelectList(await _roleManager.Roles.ToListAsync(), "Name", "Name");
             ViewBag.RoleId = _roleManager.Roles.ToList();
+
+            var teamleadList = await _userManager.GetUsersInRoleAsync("TeamLead");
+            ViewBag.TeamLead = teamleadList.ToList().ConvertAll(p =>
+            {
+                return new SelectListItem()
+                {
+                    Text = p.FirstName + " " + p.LastName,
+                    Value = p.Id
+                };
+            });
+
             return View();
         }
 
@@ -130,7 +141,15 @@ namespace EMS.Website.Controllers
             }
 
             var userRoles = await _userManager.GetRolesAsync(user);
-          
+            var teamleadList = await _userManager.GetUsersInRoleAsync("TeamLead");
+            ViewBag.TeamLead = teamleadList.ToList().ConvertAll(p =>
+            {
+                return new SelectListItem()
+                {
+                    Text = p.FirstName + " " + p.LastName,
+                    Value = p.Id
+                };
+            });
             return View(new EditUserViewModel()
             {
                 Id = user.Id,
@@ -192,6 +211,17 @@ namespace EMS.Website.Controllers
                 }
                 return RedirectToAction("Index");
             }
+
+            var teamleadList = await _userManager.GetUsersInRoleAsync("TeamLead");
+            ViewBag.TeamLead = teamleadList.ToList().ConvertAll(p =>
+            {
+                return new SelectListItem()
+                {
+                    Text = p.FirstName + " " + p.LastName,
+                    Value = p.Id
+                };
+            });
+
             ModelState.AddModelError("", "Something failed.");
             return View();
         }

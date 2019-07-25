@@ -211,7 +211,7 @@ namespace EMS.Website.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
+        public async Task<IActionResult> Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             var roleList = _roleManager.Roles.ToList();
@@ -223,6 +223,18 @@ namespace EMS.Website.Controllers
                     Value = p.Name
                 };
             });
+
+
+            var teamleadList = await _userManager.GetUsersInRoleAsync("TeamLead");
+            ViewBag.TeamLead = teamleadList.ToList().ConvertAll(p =>
+            {
+                return new SelectListItem()
+                {
+                    Text = p.FirstName + " " + p.LastName,
+                    Value = p.Id
+                };
+            });
+
             return View();
         }
 
@@ -241,7 +253,8 @@ namespace EMS.Website.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Email = model.Email,
-                    DisplayPicture = imagePath
+                    DisplayPicture = imagePath,
+                    TeamLeadId = model.TeamLeadId
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -261,6 +274,7 @@ namespace EMS.Website.Controllers
                 }
                 AddErrors(result);
             }
+         
             var roleList = _roleManager.Roles.ToList();
             ViewBag.Role = roleList.ConvertAll(p =>
             {
@@ -270,6 +284,7 @@ namespace EMS.Website.Controllers
                     Value = p.Name
                 };
             });
+
             // If we got this far, something failed, redisplay form
             return View(model);
         }

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EMS.Entity.DtoModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -48,8 +50,13 @@ namespace EMS.Website.Models.AccountViewModels
 
         public string ImagePath { get; set; }
 
-        [Display(Name ="Display Picture")]
+        [Display(Name = "Display Picture")]
+        [FileExtensionHelper(MaxSize: 2)]
         public IFormFile DisplayPicture { get; set; }
+
+        public string TeamLeadId { get; set; }
+        public virtual ApplicationUser TeamLead { get; set; }
+        public virtual ApplicationUser Employee { get; set; }
     }
 
     public class EditUserViewModel
@@ -81,5 +88,8 @@ namespace EMS.Website.Models.AccountViewModels
         public string ImagePath { get; set; }
         [Display(Name = "Display Picture")]
         public IFormFile DisplayPicture { get; set; }
+
+        public string TeamLeadId { get; set; }
+        public virtual ApplicationUser TeamLead { get; set; }
     }
 }

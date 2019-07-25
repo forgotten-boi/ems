@@ -18,7 +18,7 @@ namespace EMS.Entity.DtoModel
         /// Max File size in MB
         /// </summary>
         /// <param name="MaxSize"></param>
-        public FileExtensionHelper(double MaxSize, string acceptedFormat = "pdf")
+        public FileExtensionHelper(double MaxSize, string acceptedFormat = null)
         {
             _maxSize = MaxSize;
             _acceptedFormat = acceptedFormat?.Split(',');
@@ -34,12 +34,12 @@ namespace EMS.Entity.DtoModel
             }
             var fileExtension = System.IO.Path.GetExtension(file.FileName)?.Substring(1);
           
-            if(!_acceptedFormat.Contains(fileExtension))
+            if(_acceptedFormat !=null &&!_acceptedFormat.Contains(fileExtension))
             {
                 return new ValidationResult(GetErrorMessage(true));
             }
            
-            if (file.Length > 2 * 1024 * 1024 )
+            if (file.Length > _maxSize * 1024 * 1024 )
             {
                 return new ValidationResult(GetErrorMessage(false));
             }

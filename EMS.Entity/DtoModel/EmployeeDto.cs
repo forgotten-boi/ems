@@ -26,9 +26,7 @@ namespace EMS.Entity.DtoModel
     {
         [Key]
         public int TravelId { get; set; }
-        [ForeignKey("EmployeeInfo")]
-        public int EmployeeID { get; set; }
-
+     
         [Required]
         [Display(Name ="First Name")]
         public string EmployeeFName { get; set; }
@@ -84,6 +82,8 @@ namespace EMS.Entity.DtoModel
             }
 
         }
+
+        public ICollection<TravelExpenseDto> TravelExpensesDtos { get; set; }
 
     }
 

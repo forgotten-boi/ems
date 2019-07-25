@@ -91,7 +91,7 @@ namespace EMS.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                var recieptDoc = await FileHelper.FileUploadDataAsync(travelModel.RecieptDoc, "TaxRegDoc");
+                var recieptDoc = await FileHelper.FileUploadDataAsync(travelModel.RecieptDoc, "RecieptDoc");
 
                 var travelInfo = _mapper.Map<TravelDto, TravelInfo>(travelModel);
                 travelInfo.RecieptDoc = recieptDoc;
@@ -145,7 +145,7 @@ namespace EMS.Website.Controllers
             {
                 try
                 {
-                    var recieptPath = await FileHelper.FileUploadDataAsync(travelModel.RecieptDoc, "TaxRegDoc");
+                    var recieptPath = await FileHelper.FileUploadDataAsync(travelModel.RecieptDoc, "RecieptDoc");
                 
 
 
@@ -194,12 +194,21 @@ namespace EMS.Website.Controllers
         // POST: Expenses/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<JsonResult> Delete(int id)
         {
             var travelInfo = await _travelService.GetByIDAsync(id);
             if (travelInfo != null)
                 await _travelService.DeleteAsync(id);
-            return RedirectToAction(nameof(Index));
+            else
+                return Json(new
+                {
+                    message = $"Movie not found"
+                });
+
+            return Json(new
+            {
+                message = $"The travel expenses with purpose {travelInfo.Purpose}'s status has been deleted"
+            });
         }
 
         private async Task<bool> TravelExpenseExists(int id)

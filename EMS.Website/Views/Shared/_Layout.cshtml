@@ -220,38 +220,6 @@
             $('#tblDatatable').DataTable();
         });
 
-        $("#form").submit(function (event) {
-
-
-            if (confirm("Are you sure you want to submit?")) {
-                debugger;
-                console.log('printd');
-                //printDiv()
-
-                return true;
-            }
-            else {
-                event.preventDefault();
-                return false;
-            }
-        });
-
-        function printDiv() {
-
-            var divToPrint = document.getElementById('form');
-
-            var newWin = window.open('', 'Print-Window');
-
-            newWin.document.open();
-
-            newWin.document.write('<html><link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"><link href = "~/css/sb-admin.css" rel = "stylesheet"><body style="text-align:center" onload="window.print()"><h2>Please print this form and submit</h2>' + divToPrint.innerHTML + '</body></html>');
-
-            newWin.document.close();
-
-            setTimeout(function () { newWin.close(); }, 10);
-
-        }
-
     </script>
 
     @RenderSection("Scripts", required: false)

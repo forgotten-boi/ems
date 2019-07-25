@@ -9,12 +9,10 @@ using System.Data.Common;
 using System.Data.SqlClient;
 
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 using System.Linq;
 using System.Linq.Expressions;
-using EMS.Entity.BaseEntity;
 using System.Linq.Dynamic.Core;
 
 namespace EMS.Repository.Repositories
@@ -65,7 +63,7 @@ namespace EMS.Repository.Repositories
                 dynamic model = entity;
                 model.CreatedDate = DateTime.Now;
                 model.CreatedBy = _userContext.GetLoggedInUser().UserName;
-                var abc = await _dbset.AddAsync(model).ConfigureAwait(false);
+                await _dbset.AddAsync(model).ConfigureAwait(false);
                 await SaveAsync();
             }
             catch (Exception ex)

@@ -18,8 +18,12 @@
     [LastName]             NVARCHAR (MAX)     NULL,
     [DisplayPicture]       NVARCHAR (MAX)     NULL,
     [JobPost]              NVARCHAR (MAX)     NULL,
-    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC)
+    [TeamLeadId]           NVARCHAR (450)     NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_AspNetUsers_AspNetUsers_TeamLeadId] FOREIGN KEY ([TeamLeadId]) REFERENCES [dbo].[AspNetUsers] ([Id])
 );
+
+
 
 
 GO
@@ -30,4 +34,9 @@ CREATE NONCLUSTERED INDEX [EmailIndex]
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex]
     ON [dbo].[AspNetUsers]([NormalizedUserName] ASC) WHERE ([NormalizedUserName] IS NOT NULL);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AspNetUsers_TeamLeadId]
+    ON [dbo].[AspNetUsers]([TeamLeadId] ASC) WHERE ([TeamLeadId] IS NOT NULL);
 
