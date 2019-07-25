@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     ViewData["Nav"] = "Expenses";
+    var isUserTeamLead = User.IsInRole("TeamLead") || User.IsInRole("Admin");
 }
 
 @section Breadcrumbs{
@@ -25,9 +26,12 @@
     <table class="table table-bordered table-sm dataTable" id="tblDatatable">
         <thead>
             <tr>
-                <th>
-                    Employee Name
-                </th>
+                @if (isUserTeamLead)
+                {
+                    <th>
+                        Employee Name
+                    </th>
+                }
                 <th>
                     @Html.DisplayNameFor(model => model.Destination)
                 </th>
@@ -64,43 +68,46 @@
                 }
                 var EmployeeName = item.EmployeeFName + " " + item.EmployeeLName;
                 <tr>
-
+                @if (isUserTeamLead)
+                {
                     <td>
                         @EmployeeName
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Destination)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Purpose)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EndDate)
-                    </td>
-                    <td>
-                        @if (User.IsInRole("Admin") || User.IsInRole("TeamLead"))
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Purpose)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin") || User.IsInRole("TeamLead"))
                         {
 
-                            <button type="button" class="btn btn-@cssClass" style="min-width: 96px" data-toggle="modal" data-expenseid="@item.TravelId" data-target="#approvalModal" data-expense-name="@item.Purpose">@item.GetApproval</button>
+                    <button type="button" class="btn btn-@cssClass" style="min-width: 96px" data-toggle="modal" data-expenseid="@item.TravelId" data-target="#approvalModal" data-expense-name="@item.Purpose">@item.GetApproval</button>
                         }
                         else
                         {
-                            <button type="button" class="btn btn-@cssClass" style="min-width: 96px">@item.GetApproval</button>
+                    <button type="button" class="btn btn-@cssClass" style="min-width: 96px">@item.GetApproval</button>
                         }
 
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.TravelId" title="Edit"><i class="fas fa-edit"></i></a> |
-                        <a asp-action="Details" asp-route-id="@item.TravelId" title="Details"><i class="fas fa-info"></i></a> |
-                        <button onclick="DeleteExpenses(@item.TravelId)" asp-route-id="@item.TravelId" title="Delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TravelId" title="Edit"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.TravelId" title="Details"><i class="fas fa-info"></i></a> |
+                    <a href="#" onclick="DeleteExpenses(@item.TravelId)" title="Delete"><i class="fas fa-trash"></i></a> |
+                    <a href="@item.RecieptDoc" title="Delete"><i class="fas fa-file-download"></i></a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
@@ -175,21 +182,21 @@
             });
 
         }
-        function DeleteExpenses(travelId) { }
-            if (confirm("Are you sure you want to delete?")) {
-                $.ajax({
-                    url: '/Expenses/Delete?id=' + id + '',
-                    type: "GET",
-                    dataType: "JSON",
-                    success: function (data) {
-                        console.log(data);
-                     
-                        alert("The reciept is Deleted!");
-                        location.reload(true);
-                    }
-                });
-            }
+        function DeleteExpenses(travelId) { 
+        if (confirm("Are you sure you want to delete?")) {
+            $.ajax({
+                url: '/Expenses/Delete?id=' + travelId + '',
+                type: "GET",
+                dataType: "JSON",
+                success: function (data) {
+                    console.log(data);
+
+                    alert("The reciept is Deleted!");
+                    location.reload(true);
+                }
+            });
         }
+    }
     </script>
 
 }

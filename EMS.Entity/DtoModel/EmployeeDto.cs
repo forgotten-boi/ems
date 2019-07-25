@@ -24,6 +24,11 @@ namespace EMS.Entity.DtoModel
 
     public class TravelDto 
     {
+        public TravelDto()
+        {
+            this.TravelExpensesDtos = new List<TravelExpenseDto>();
+        }
+
         [Key]
         public int TravelId { get; set; }
      
@@ -36,14 +41,17 @@ namespace EMS.Entity.DtoModel
         public string Destination { get; set; }
         public string Purpose { get; set; }
 
-        public IFormFile RecieptDoc { get; set; }
-
+        public IFormFile RecieptFile { get; set; }
+        public string RecieptDoc { get; set; }
         public string IBAN { get; set; }
         public string BankName { get; set; }
         public string Department { get; set; }
         public string Currency { get; set; }
 
         private DateTime UpdateDate;
+
+       
+
         public DateTime Date
         {
             get { return UpdateDate; }

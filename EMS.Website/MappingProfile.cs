@@ -27,7 +27,7 @@ namespace EMS.Website
             CreateMap<EmployeeInfo, EmployeeDto>().ForMember(x => x.EmployeeId, opts => opts.MapFrom(x => x.ID)).ReverseMap();
 
             CreateMap<TravelInfo, TravelDto>().ForMember(x => x.TravelId, opts => opts.MapFrom(x => x.ID))
-                .ForMember(y => y.RecieptDoc, z => z.Ignore())
+                .ForMember(y => y.RecieptFile, z => z.Ignore())
                 .ReverseMap();
             CreateMap<TravelExpenses, TravelExpenseDto>().ForMember(x => x.TravelExpId, opts => opts.MapFrom(x => x.ID))
                 .ReverseMap();

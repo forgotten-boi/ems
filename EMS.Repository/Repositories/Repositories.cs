@@ -34,7 +34,7 @@ namespace EMS.Repository.Repositories
         }
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
-            if (_userContext.GetLoggedInUser().Roles.Any(p => p.Value.Equals("Admin")))
+            if (_userContext.GetLoggedInUser().Roles.Any(p => p.Value.Equals("Admin") || p.Value.Equals("TeamLead")))
                 return await _dbset.ToListAsync();
             else
             {
