@@ -17,11 +17,6 @@ namespace EMS.Entity.Entities
         [EmailAddress]
         public string Email { get; set; }
     
-        public string IBAN { get; set; }
-        public string BankName { get; set; }
-        public string Department { get; set; }
-        public string Currency { get; set; }
-
         public virtual ICollection<TravelInfo> TravelInfos { get; set; }
     }
 
@@ -30,9 +25,20 @@ namespace EMS.Entity.Entities
         [ForeignKey("EmployeeInfo")]
         public int EmployeeID { get; set; }
         public virtual EmployeeInfo EmployeeInfo { get; set; }
+
+        [Required]
+        public string EmployeeFName { get; set; }
+        public string EmployeeLName { get; set; }
+
+       
         public string Destination { get; set; }
         public string Purpose { get; set; }
         public string RecieptDoc { get; set; }
+
+        public string IBAN { get; set; }
+        public string BankName { get; set; }
+        public string Department { get; set; }
+        public string Currency { get; set; }
 
         private DateTime UpdateDate;
         public DateTime Date

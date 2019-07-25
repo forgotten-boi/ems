@@ -20,11 +20,6 @@ namespace EMS.Entity.DtoModel
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
-        public string IBAN { get; set; }
-        public string BankName { get; set; }
-        public string Department { get; set; }
-        public string Currency { get; set; }
     }
 
     public class TravelDto 
@@ -33,10 +28,22 @@ namespace EMS.Entity.DtoModel
         public int TravelId { get; set; }
         [ForeignKey("EmployeeInfo")]
         public int EmployeeID { get; set; }
+
+        [Required]
+        [Display(Name ="First Name")]
+        public string EmployeeFName { get; set; }
+        [Display(Name = "Last Name")]
+        public string EmployeeLName { get; set; }
+
         public string Destination { get; set; }
         public string Purpose { get; set; }
 
         public IFormFile RecieptDoc { get; set; }
+
+        public string IBAN { get; set; }
+        public string BankName { get; set; }
+        public string Department { get; set; }
+        public string Currency { get; set; }
 
         private DateTime UpdateDate;
         public DateTime Date

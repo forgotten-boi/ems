@@ -15,11 +15,7 @@
 
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin.css" rel="stylesheet">
-    <!--Nepali Datepicker-->
-    <link rel="stylesheet" href="~/lib/nepali-datepicker/nepali.datepicker.v2.2.min.css">
 
-    <!--Project css-->
-    <link rel="stylesheet" href="~/css/EMS.css" />
 </head>
 <body id="page-top">
     @using Microsoft.AspNetCore.Identity
@@ -161,7 +157,7 @@
             <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright © SoftApp Studio 2019</span>
+                        <span>Copyright © Trivago 2019</span>
                     </div>
                 </div>
             </footer>
@@ -206,7 +202,7 @@
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugin JavaScript-->
-    <script src="~/vendor/chart.js/Chart.min.js"></script>
+    @*<script src="~/vendor/chart.js/Chart.min.js"></script>*@
     <script src="~/vendor/datatables/jquery.dataTables.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
 
@@ -214,22 +210,10 @@
     <script src="~/js/sb-admin.min.js"></script>
 
     <!-- Demo scripts for this page-->
-    <script src="~/js/demo/datatables-demo.js"></script>
-    <script src="~/js/demo/chart-area-demo.js"></script>
+    @*<script src="~/js/demo/datatables-demo.js"></script>
+    <script src="~/js/demo/chart-area-demo.js"></script>*@
 
-    <!--Nepali datepicker-->
-    <script type="text/javascript" src="~/lib/nepali-datepicker/nepali.datepicker.v2.2.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-
-            //$('.nepali-calendar').nepaliDatePicker();
-            $('[type=date]').nepaliDatePicker({
-                npdMonth: true,
-                npdYear: true,
-            });
-        });
-    </script>
+    
 
     <script>
         $(document).ready(function () {
