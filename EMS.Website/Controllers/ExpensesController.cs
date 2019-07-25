@@ -153,7 +153,7 @@ namespace EMS.Website.Controllers
 
                     var travelInfo = _mapper.Map<TravelDto, TravelInfo>(travelModel);
                     travelInfo.RecieptDoc = recieptPath;
-             
+                    travelInfo.Date = DateTime.Now;
 
                     await _travelService.UpdateAsync(travelInfo);
                 }
@@ -206,7 +206,7 @@ namespace EMS.Website.Controllers
             {
                 return Json(new
                 {
-                    message = $"Movie not found"
+                    message = $"Reciept not found"
                 });
             }
 
@@ -216,11 +216,10 @@ namespace EMS.Website.Controllers
             {
                 return Json(new
                 {
-                    message = $"Movie not found"
+                    message = $"Reciept not found"
                 });
             }
             travelInfo.IsApproved = status;
-            //await _movieService.UpdateAsync(movieInfo);
 
             await Task.Run(async () => {
 

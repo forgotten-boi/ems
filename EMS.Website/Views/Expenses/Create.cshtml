@@ -7,83 +7,135 @@
 
     var user = await _userManager.GetUserAsync(User);
 }
-  @inject UserManager<ApplicationUser> _userManager;
-    @section Breadcrumbs{
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a asp-controller="Home" asp-action="Index">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a asp-controller="BannerInfo" asp-action="Index">@ViewData["Nav"]</a>
-            </li>
-            <li class="breadcrumb-item active">@ViewData["Nav2"]</li>
-        </ol>
-    }
-    <div class="card-header">
+@inject UserManager<ApplicationUser> _userManager;
+@section Breadcrumbs{
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-controller="Home" asp-action="Index">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-controller="Expenses" asp-action="Index">@ViewData["Nav"]</a>
+        </li>
+        <li class="breadcrumb-item active">@ViewData["Nav2"]</li>
+    </ol>
+}
+<div class="card-header">
 
-        <a asp-action="Create" class="btn btn-primary">
-            <i class="fas fa-plus"></i>
-            New Expense
-        </a>
-    </div>
-    <div class="card-body">
-        <form asp-action="Create" method="post" enctype="multipart/form-data" id="form">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmployeeFName" class="control-label"></label>
-                <input asp-for="EmployeeFName" value="@user.FirstName" class="form-control" />
-                <span asp-validation-for="EmployeeFName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeLName" class="control-label"></label>
-                <input asp-for="EmployeeLName" value="@user.LastName" class="form-control" />
-                <span asp-validation-for="EmployeeLName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Destination" class="control-label"></label>
-                <input asp-for="Destination" class="form-control" />
-                <span asp-validation-for="Destination" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Purpose" class="control-label"></label>
-                <input asp-for="Purpose" class="form-control" />
-                <span asp-validation-for="Purpose" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
-                <span asp-validation-for="StartTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
-                <span asp-validation-for="EndTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RecieptFile" class="control-label"></label>
-                <input type="file" asp-for="RecieptFile" class="form-control" id="RecieptFile" name="RecieptFile" />
-                <span asp-validation-for="RecieptFile" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        New Expense
+    </a>
+</div>
+<div class="card-body">
+    <form asp-action="Create" method="post" enctype="multipart/form-data" id="form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="EmployeeFName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="EmployeeFName" value="@user.FirstName" class="form-control" />
+                        <span asp-validation-for="EmployeeFName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="EmployeeLName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="EmployeeLName" value="@user.LastName" class="form-control" />
+                        <span asp-validation-for="EmployeeLName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+
+                    <label asp-for="Destination" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Destination" class="form-control" />
+                        <span asp-validation-for="Destination" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Purpose" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Purpose" class="form-control" />
+                        <span asp-validation-for="Purpose" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="StartDate" class="form-control" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="EndDate" class="form-control" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="StartTime" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="StartTime" class="form-control" />
+                        <span asp-validation-for="StartTime" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="EndTime" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="EndTime" class="form-control" />
+                        <span asp-validation-for="EndTime" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="RecieptFile" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input type="file" asp-for="RecieptFile" class="form-control" id="RecieptFile" name="RecieptFile" />
+                        <span asp-validation-for="RecieptFile" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input type="submit" value="Create" class="btn btn-primary pull-right" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
