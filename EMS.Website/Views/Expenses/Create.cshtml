@@ -141,11 +141,11 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            
+
                             <td>Details</td>
                             <td>Price </td>
                             <td>Date</td>
-                            
+
                             <td></td>
                         </tr>
                     </thead>
@@ -157,7 +157,7 @@
         <div class="form-group">
             <div class="form-row">
                 <div class="col-md-6">
-                    <input type="submit" value="Create" class="btn btn-primary pull-right" />
+                    <input type="submit" value="Create" class="btn btn-primary pull-right" id="btnSubmit" />
                 </div>
             </div>
         </div>
@@ -180,10 +180,10 @@
 
                                 <div>
                                     <label class="control-label">Description</label>
-                                    @Html.Editor("Date", new { htmlAttributes = new { @class = "form-control",@type="date", id = "Date" } })
+                                    @Html.Editor("Date", new { htmlAttributes = new { @class = "form-control", @type = "date", id = "Date" } })
 
                                     <label class="control-label">Price</label>
-                                    @Html.Editor("Expenses", new { htmlAttributes = new { @class = "form-control",@type="number", id = "Price" } })
+                                    @Html.Editor("Expenses", new { htmlAttributes = new { @class = "form-control", @type = "number", id = "Price" } })
                                     <br />
                                 </div>
                             </div>
@@ -213,60 +213,60 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script type="text/javascript">
-        $(document).ready(function(){
-         
-            if ($('#isFinance').val() !="" && $('#isFinance').val() == 'True')
-              {
-                    $("#form input, #form select").prop("readonly", true);
-                    $("#form input").prop("disabled", true);
-              }
+        $(document).ready(function () {
+
+            if ($('#isFinance').val() != "" && $('#isFinance').val() == 'True') {
+                $("#form input, #form select").prop("readonly", true);
+                $("#form input").prop("disabled", true);
+            }
         });
         //   $("#form").submit({
         //    $.ajax
 
         //});
 
-         $("#btnAdd").on('click', function () {
-        var date = $('#Date').val();
-        var details = $("#Details option:selected").text();
-        var price = $("#Price").val();
-        //var quantity = $("#Quantity").val();
-        //var amount = $("#Amount").val();
+        $("#btnAdd").on('click', function () {
+            var date = $('#Date').val();
+            var details = $("#Details option:selected").text();
+            var price = $("#Price").val();
+            //var quantity = $("#Quantity").val();
+            //var amount = $("#Amount").val();
 
-        var row = `<tr>
-                    <td class="date">${date}</td>
-                    <td class="details">${details}</td>
-                    <td class="expenses">${price}</td>
-                
-                    <td>
-                        <a class="btn btn-danger btn-sm btnDelete">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </a>
-                    </td>
-                </tr>`;
+            var row = `<tr>
+                                <td class="date">${date}</td>
+                                <td class="details">${details}</td>
+                                <td class="expenses">${price}</td>
 
-        $('#Items').append(row);
-        calculateSum();
-        //clearValue();
-         });
+                                <td>
+                                   <a class="btnDelete" title="Delete">
+        <i class="fas fa-trash"></i>
+</a>
 
-     
- function calculateSum() {
-        var sum = 0;
-        // iterate through each td based on class and add the values
-        $(".price").each(function () {
+                                </td>
+                            </tr>`;
 
-            var value = $(this).text();
-            // add only if the value is number
-            if (!isNaN(value) && value.length !== 0) {
-                sum += parseFloat(value);
-            }
+            $('#Items').append(row);
+            calculateSum();
+            //clearValue();
         });
 
-        //$('#TotalAmount').val(sum);
-        //var a = $('#TotalAmount').val();
-        //var b = $('#GivenAmount').val();
-        //$('#ChangeAmount').val(a - b);
+
+        function calculateSum() {
+            var sum = 0;
+            // iterate through each td based on class and add the values
+            $(".price").each(function () {
+
+                var value = $(this).text();
+                // add only if the value is number
+                if (!isNaN(value) && value.length !== 0) {
+                    sum += parseFloat(value);
+                }
+            });
+
+            //$('#TotalAmount').val(sum);
+            //var a = $('#TotalAmount').val();
+            //var b = $('#GivenAmount').val();
+            //$('#ChangeAmount').val(a - b);
         };
 
         $(document).ready(function () {
@@ -275,12 +275,12 @@
                 var list = [];
                 $('#Items tr').each(function (index, ele) {
                     var orderItem = {
-                       
+
                         details: $('.details', this).text(),
                         date: $('.date', this).text(),
                         expenses: parseFloat($('.expenses', this).text())
                     };
-                    
+
                     list.push(orderItem);
                 });
                 console.log(list);
