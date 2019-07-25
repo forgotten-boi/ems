@@ -27,8 +27,8 @@
 
     @inject SignInManager<ApplicationUser> SignInManager
     @inject UserManager<ApplicationUser> UserManager
-    @inject EMS.Services.Interface.IArtistInfoService _artistManager
-    @inject EMS.Services.Interface.IMovieInfoService _movieManager
+    @inject EMS.Services.IServices.ITravelInfoService _travelInfoManager
+ 
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -99,72 +99,41 @@
                         <span>Expenses Management</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="BannerInfo" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>ब्यानर व्यवस्थापन</span>
-                    </a>
-                </li>
             }
-            @if (User.IsInRole("Distributer") || User.IsInRole("Admin"))
+            @if (User.IsInRole("TeamLead") || User.IsInRole("Admin"))
             {
                 <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="DistributerReg" asp-action="Index">
+                    <a is-active-route class="nav-link" asp-controller="Expenses" asp-action="Index">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Distributor व्यवस्थापन</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="BannerInfo" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>ब्यानर व्यवस्थापन</span>
+                        <span>Team Expense Management</span>
                     </a>
                 </li>
             }
-            @if (User.IsInRole("Exhibitor") || User.IsInRole("Admin"))
+            @if (User.IsInRole("Finance") || User.IsInRole("Admin"))
             {
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="ExhibitorsDetails" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Exhibitor व्यवस्थापन</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a is-active-route class="nav-link" asp-controller="Expenses" asp-action="Index">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Finance Management</span>
+                </a>
+            </li>
             }
-            @if (User.IsInRole("Producer") || User.IsInRole("Admin"))
-            {
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="MovieInfo" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Movie व्यवस्थापन</span>
-                    </a>
-                </li>
-                <!-- <li class="nav-item">
-            <a is-active-route class="nav-link" asp-controller="ProducerProfile" asp-action="Index">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Producer व्यवस्थापन</span>
-            </a>
-        </li> -->
-            }
+           
             @if (User.IsInRole("Admin"))
             {
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="ArtistInfo" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>कलाकार व्यवस्थापन</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-area="" asp-controller="UserAdmin" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        User Management
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="RolesAdmin" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>रोल व्यवस्थापन</span>
-                    </a>
-                </li>
+          
+            <li class="nav-item">
+                <a is-active-route class="nav-link" asp-area="" asp-controller="UserAdmin" asp-action="Index">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    User Management
+                </a>
+            </li>
+            <li class="nav-item">
+                <a is-active-route class="nav-link" asp-controller="RolesAdmin" asp-action="Index">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Role Management</span>
+                </a>
+            </li>
             }
             <!-- <li class="nav-item">
         @await Html.PartialAsync("_LoginPartial")
@@ -273,7 +242,7 @@
             if (confirm("Are you sure you want to submit?")) {
                 debugger;
                 console.log('printd');
-                printDiv()
+                //printDiv()
 
                 return true;
             }

@@ -18,13 +18,9 @@ namespace EMS.Repository
 {
     public abstract class ApplicationService<T, T2> : IApplicationService<T, T2> where T : BaseEntity<T2>
     {
-
-        // private readonly IBusinessContext _businessContext;
         public ApplicationService(IRepository<T, T2> repository)
-        //IBusinessContext businessContext)
         {
             Repository = repository;
-            //  _businessContext = businessContext;
         }
 
 
@@ -47,24 +43,6 @@ namespace EMS.Repository
             };
             return result;
         }
-
-        public virtual async Task<QueryResult<T>> GetAllAsync(IQueryObject queryObj)
-        {
-            var result = new QueryResult<T>();
-            var query = await Repository.GetAllAsync();
-
-            result.TotalItems = query.Count();
-
-
-            result.Items = query.ToList();
-
-            return result;
-
-        }
-
-
-
-
 
         public virtual async Task AddAsync(T entity)
         {
@@ -101,20 +79,5 @@ namespace EMS.Repository
         {
             await Repository.DeleteAsync(where);
         }
-
-        //public Task DeleteAsync(Expression<Func<T, bool>> where)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<IEnumerable<T>> GetFilteredAsync(Expression<Func<T, bool>> where)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<T> FindByIdAsync(Expression<Func<T, bool>> where)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

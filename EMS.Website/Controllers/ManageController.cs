@@ -97,26 +97,6 @@ namespace EMS.Website.Controllers
                 throw new ApplicationException($"Unexpected error occurred modifying user with userID '{user.Id}'.");
             }
 
-            //var email = user.Email;
-            //if (model.Email != email)
-            //{
-            //    var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
-            //    if (!setEmailResult.Succeeded)
-            //    {
-            //        throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
-            //    }
-            //}
-
-            //var phoneNumber = user.PhoneNumber;
-            //if (model.PhoneNumber != phoneNumber)
-            //{
-            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
-            //    if (!setPhoneResult.Succeeded)
-            //    {
-            //        throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
-            //    }
-            //}
-
             StatusMessage = "Your profile has been updated";
             return RedirectToAction(nameof(Index));
         }

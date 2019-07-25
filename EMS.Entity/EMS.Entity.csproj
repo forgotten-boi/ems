@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DtoModel\MovieDto.cs" />
+    <Compile Remove="Entities\MovieInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.http" Version="2.2.2" />
   </ItemGroup>
 

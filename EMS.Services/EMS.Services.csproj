@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IServices\IMovieInfoService.cs" />
+    <Compile Remove="Services\MovieInfoService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.18" />
   </ItemGroup>
