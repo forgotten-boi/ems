@@ -60,7 +60,7 @@ namespace EMS.Website.Controllers
         }
 
         // GET: Expenses/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -95,7 +95,7 @@ namespace EMS.Website.Controllers
 
                 var travelInfo = _mapper.Map<TravelDto, TravelInfo>(travelModel);
                 travelInfo.RecieptDoc = recieptDoc;
-
+                travelInfo.Date = DateTime.Now;
                 await _travelService.AddAsync(travelInfo);
 
                 var teamLeads = await _userManager.GetUsersInRoleAsync("TeamLead");
@@ -208,7 +208,7 @@ namespace EMS.Website.Controllers
             return travelInfo != null;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,TeamLead")]
         public async Task<JsonResult> Approval(int? id, bool status, string comment)
         {
             if (id == null)
@@ -256,6 +256,12 @@ namespace EMS.Website.Controllers
 
                     await _approvalInfoService.AddAsync(approveMovie);
                 }
+                var financeUsers = await _userManager.GetUsersInRoleAsync("Finance");
+                var financeUser = financeUsers.FirstOrDefault();
+                var callbackUrl = Url.Action("Index");
+                await _emailSender.SendEmailAsync(financeUser.Email, "Approve/Reject Travel Expenses",
+                 $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
+
             });
 
             return Json(new
