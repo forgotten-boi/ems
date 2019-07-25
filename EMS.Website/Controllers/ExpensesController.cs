@@ -23,7 +23,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.Website.Controllers
 {
-    [Authorize(Roles = "Admin,Employee,TeamLead")]
+    [Authorize]
     public class ExpensesController : Controller
     {
         private readonly ITravelInfoService _travelService;
@@ -111,9 +111,13 @@ namespace EMS.Website.Controllers
                 var recieptDoc = await FileHelper.FileUploadDataAsync(travelModel.RecieptFile, "RecieptDoc");
 
                 var travelInfo = _mapper.Map<TravelDto, TravelInfo>(travelModel);
+                var travelExp = _mapper.Map<ICollection<TravelExpenseDto>, ICollection<TravelExpenses>>(travelModel.TravelExpensesDtos);
+
                 travelInfo.RecieptDoc = recieptDoc;
                 travelInfo.Date = DateTime.Now;
+                travelInfo.TravelExpenses = travelExp;
                 await _travelService.AddAsync(travelInfo);
+
 
 
                 var user = await _userManager.GetUserAsync(User);
@@ -154,6 +158,7 @@ namespace EMS.Website.Controllers
         // POST: Expenses/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,TeamLead,Employee")]
         public async Task<IActionResult> Edit(int id, TravelDto travelModel)
         {
             if (id != travelModel.TravelId)
@@ -192,7 +197,7 @@ namespace EMS.Website.Controllers
             }
             return View(travelModel);
         }
-
+        [Authorize(Roles = "Admin,TeamLead,Employee")]
         // GET: Expenses/Delete/5
         public async Task<JsonResult> Delete(int id)
         {
@@ -202,7 +207,7 @@ namespace EMS.Website.Controllers
             else
                 return Json(new
                 {
-                    message = $"Movie not found"
+                    message = $"Reciept not found"
                 });
 
             return Json(new
@@ -253,7 +258,7 @@ namespace EMS.Website.Controllers
                 }
                 else
                 {
-                    var approveMovie = new ApprovalInfo
+                    var approveReciept = new ApprovalInfo
                     {
                         IsApproved = status,
                         ApprovedBy = User.Identity.Name,
@@ -262,7 +267,7 @@ namespace EMS.Website.Controllers
                         ApprovedDate = DateTime.Now
                     };
 
-                    await _approvalInfoService.AddAsync(approveMovie);
+                    await _approvalInfoService.AddAsync(approveReciept);
                 }
 
                 if (status)

@@ -42,6 +42,7 @@
     <Compile Remove="Controllers\ExhibitorsDetailsController.cs" />
     <Compile Remove="Controllers\MovieInfoController.cs" />
     <Compile Remove="Controllers\ProducerProfileController.cs" />
+    <Compile Remove="Extensions\Utilities.cs" />
   </ItemGroup>
 
   <ItemGroup>

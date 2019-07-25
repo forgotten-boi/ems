@@ -105,11 +105,7 @@ namespace EMS.Website
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
             });
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-                //c.AddPolicy("AllowOrigin", options => options.WithOrigins("http://sobiztrend.com.np"));
-            });
+          
 
             services.AddResponseCompression();
             services.Configure<GzipCompressionProviderOptions>
@@ -124,8 +120,7 @@ namespace EMS.Website
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             env.ConfigureNLog("nlog.config");
-            app.UseCors(options => options.AllowAnyOrigin());
-            //app.UseCors(options => options.WithOrigins("http://sobiztrend.com.np"));
+          
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -144,7 +139,7 @@ namespace EMS.Website
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Expenses}/{action=Index}/{id?}");
             });
         }
 

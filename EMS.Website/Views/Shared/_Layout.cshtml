@@ -81,12 +81,12 @@
                     <img src="@UserManager.GetUserAsync(User).Result.DisplayPicture" class="col-md-4" alt="" />
                 </a>
             </li>
-            <li class="nav-item ">
+            @*<li class="nav-item ">
                 <a is-active-route class="nav-link" asp-controller="Home" asp-action="Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
-            </li>
+            </li>*@
             @if (User.IsInRole("Employee") || User.IsInRole("Admin"))
             {
                 <li class="nav-item">
@@ -96,7 +96,7 @@
                     </a>
                 </li>
             }
-            @if (User.IsInRole("TeamLead") || User.IsInRole("Admin"))
+            @if (User.IsInRole("TeamLead"))
             {
                 <li class="nav-item">
                     <a is-active-route class="nav-link" asp-controller="Expenses" asp-action="Index">
@@ -202,16 +202,13 @@
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugin JavaScript-->
-    @*<script src="~/vendor/chart.js/Chart.min.js"></script>*@
+ 
     <script src="~/vendor/datatables/jquery.dataTables.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin.min.js"></script>
 
-    <!-- Demo scripts for this page-->
-    @*<script src="~/js/demo/datatables-demo.js"></script>
-    <script src="~/js/demo/chart-area-demo.js"></script>*@
 
     
 

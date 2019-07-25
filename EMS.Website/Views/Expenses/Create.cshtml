@@ -235,8 +235,8 @@
 
         var row = `<tr>
                     <td class="date">${date}</td>
-                    <td class="productName">${details}</td>
-                    <td class="price">${price}</td>
+                    <td class="details">${details}</td>
+                    <td class="expenses">${price}</td>
                 
                     <td>
                         <a class="btn btn-danger btn-sm btnDelete">
@@ -267,6 +267,47 @@
         //var a = $('#TotalAmount').val();
         //var b = $('#GivenAmount').val();
         //$('#ChangeAmount').val(a - b);
-    };
+        };
+
+        $(document).ready(function () {
+            $("#btnSubmit").click(function () {
+
+                var list = [];
+                $('#Items tr').each(function (index, ele) {
+                    var orderItem = {
+                       
+                        details: $('.details', this).text(),
+                        date: $('.date', this).text(),
+                        expenses: parseFloat($('.expenses', this).text())
+                    };
+                    
+                    list.push(orderItem);
+                });
+                console.log(list);
+                var object = {};
+                formData.forEach(function (value, key) {
+                    object[key] = value;
+                });
+                object.TravelExpenseDto = list;
+                console.log(object);
+                var json = JSON.stringify(object);
+                console.log(json);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Expenses/Create',
+                    datatype: "Json",
+                    data: json,
+                    success: function () {
+                        //alert('Successfully saved');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+        })
+
     </script>
 }
