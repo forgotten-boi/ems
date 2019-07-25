@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +25,7 @@ namespace EMS.Website
                     var serviceProvider = services.GetRequiredService<IServiceProvider>();
                     var configuration = services.GetRequiredService<IConfiguration>();
                     Seed.CreateRoles(serviceProvider, configuration).Wait();
+                    Seed.CreateMstExpenses(serviceProvider, configuration).Wait();
                     
 
                 }

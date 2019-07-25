@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EMS.DataAccess;
 using EMS.Entity.Entities;
+using System.Linq;
 
 namespace EMS.Website
 {
@@ -57,14 +58,13 @@ namespace EMS.Website
         {
             
             var _contextManager = serviceProvider.GetRequiredService<ProjectDbContext>();
-            List<MstExpenses> expenses = Configuration.GetSection("MstExpense").Get<List<MstExpenses>>();
-            
-            foreach (var expense in expenses)
+           
+            if (_contextManager.MstExpenses == null || _contextManager.MstExpenses.ToList().Count == 0)
             {
-
+                List<MstExpenses> expenses = Configuration.GetSection("MstExpense").Get<List<MstExpenses>>();
+                await _contextManager.MstExpenses.AddRangeAsync(expenses);
+                await _contextManager.SaveChangesAsync();
             }
-            await _contextManager.AddRangeAsync(expenses);
-            await _contextManager.SaveChangesAsync();
 
         }
     }

@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Identity;
 using EMS.Website.Models;
 using Microsoft.Extensions.Logging;
 using EMS.Services.IServices;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EMS.Website.Controllers
 {
@@ -26,18 +27,23 @@ namespace EMS.Website.Controllers
     public class ExpensesController : Controller
     {
         private readonly ITravelInfoService _travelService;
-        private readonly IMapper _mapper;
-        private readonly IEmailSender _emailSender;
+        private readonly IMstExpensesService _mstExpensesService;
+        
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+
         private readonly ILogger<AccountController> _logger;
+        private readonly IMapper _mapper;
+        private readonly IEmailSender _emailSender;
+
         public IApprovalInfoService _approvalInfoService { get; set; }
 
         public ExpensesController(ITravelInfoService travelService, IMapper mapper, IEmailSender emailSender,
                    UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IApprovalInfoService approvalInfoService,
+            IMstExpensesService mstExpensesService,
             ILogger<AccountController> logger)
         {
             _travelService = travelService;
@@ -47,6 +53,7 @@ namespace EMS.Website.Controllers
             _roleManager = roleManager;
             _approvalInfoService = approvalInfoService;
             _logger = logger;
+            _mstExpensesService = mstExpensesService;
         }
 
 
@@ -73,20 +80,30 @@ namespace EMS.Website.Controllers
             {
                 return NotFound();
             }
-            var bannerDto = _mapper.Map < TravelInfo, TravelDto>(travelInfo);
+            var bannerDto = _mapper.Map<TravelInfo, TravelDto>(travelInfo);
 
             return View(bannerDto);
         }
 
         // GET: Expenses/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var expensesList = await _mstExpensesService.GetAllAsync();
+            ViewBag.ExpensesList = expensesList.ToList().ConvertAll(p =>
+            {
+                return new SelectListItem()
+                {
+                    Text = p.Comment,
+                    Value = p.Comment
+                };
+            });
             return View();
         }
 
         // POST: Expenses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin,TeamLead,Employee")]
         public async Task<IActionResult> Create(TravelDto travelModel)
         {
             if (ModelState.IsValid)
@@ -98,14 +115,15 @@ namespace EMS.Website.Controllers
                 travelInfo.Date = DateTime.Now;
                 await _travelService.AddAsync(travelInfo);
 
-                var user = await _userManager.GetUserAsync(User);
 
+                var user = await _userManager.GetUserAsync(User);
                 var teamLead =  _userManager.Users.FirstOrDefault(p=> p.Id == user.TeamLeadId);
-               
                 var callbackUrl = Url.Action("Index");
+
                 await _emailSender.SendEmailAsync(teamLead.Email, "Approve/Reject Travel Expenses",
                  $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
                 
+
                 return RedirectToAction(nameof(Index));
 
             }
