@@ -138,6 +138,7 @@ namespace EMS.Website.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin,TeamLead,Employee")]
         public async Task<string> FileUpload(IList<IFormFile> RecieptFiles)
         {
             if (Request.Form != null && Request.Form.Files?.Count > 0)

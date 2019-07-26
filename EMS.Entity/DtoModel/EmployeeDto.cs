@@ -11,8 +11,6 @@ namespace EMS.Entity.DtoModel
     {
         [Key]
         public int EmployeeId { get; set; }
-
-
         [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -36,8 +34,10 @@ namespace EMS.Entity.DtoModel
         [Display(Name ="First Name")]
         public string EmployeeFName { get; set; }
         [Display(Name = "Last Name")]
+        [Required]
         public string EmployeeLName { get; set; }
 
+        [Required]
         public string Destination { get; set; }
         public string Purpose { get; set; }
 

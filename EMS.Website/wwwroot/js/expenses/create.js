@@ -36,8 +36,12 @@ $("#btnAdd").on('click', function () {
     var details = $("#Details option:selected").text();
     var price = $("#Price").val();
 
-
-    var row = `<tr>
+    if (date === "" || details === null || price === "")
+    {
+        alert('date, details and price cannot be null');
+    }
+    else {
+        var row = `<tr>
                                     <td class="date">${date}</td>
                                     <td class="details">${details}</td>
                                     <td class="expenses">${price}</td>
@@ -45,13 +49,14 @@ $("#btnAdd").on('click', function () {
                                     <td>
                                        <a class="btnDelete" title="Delete">
             <i class="fas fa-trash"></i>
-</a>
+            </a>
 
                                     </td>
                                 </tr>`;
 
-    $('#Items').append(row);
-    calculateSum();
+        $('#Items').append(row);
+        calculateSum();
+    }
     //clearValue();
 });
 
@@ -115,7 +120,7 @@ $(document).ready(function () {
         console.log(object);
         var json = JSON.stringify(object);
         console.log(json);
-        var input = document.getElementById('#RecieptFile');
+        var input = document.getElementById('RecieptFile');
         var files = input.files;
         var fileData = new FormData();
 
@@ -133,7 +138,7 @@ $(document).ready(function () {
                 success: function (data) {
 
                     recieptPath = data;
-                    object.recieptPath = data;
+                    object.RecieptDoc = data;
                     $.ajax({
                         type: 'POST',
                         url: '/Expenses/Create',
@@ -145,7 +150,7 @@ $(document).ready(function () {
                             if (data !== null) {
                                 alert(data.message);
                             }
-                            location.href('/Expenses/Index');
+                            window.location.href = '/Expenses/Index';
                             
                         },
                         error: function (error) {

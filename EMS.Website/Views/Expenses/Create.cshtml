@@ -221,10 +221,10 @@
 
                                 <div>
                                     <label class="control-label">Description</label>
-                                    @Html.Editor("Date", new { htmlAttributes = new { @class = "form-control", @type = "date", id = "Date" } })
+                                    @Html.Editor("Date", new { htmlAttributes = new { @class = "form-control", @required=true, @type = "date", id = "Date" } })
 
                                     <label class="control-label">Price</label>
-                                    @Html.Editor("Expenses", new { htmlAttributes = new { @class = "form-control", @type = "number", id = "Price" } })
+                                    @Html.Editor("Expenses", new { htmlAttributes = new { @class = "form-control",@required=true, @type = "number", id = "Price" } })
                                     <br />
                                 </div>
                             </div>
