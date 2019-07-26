@@ -5,7 +5,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using EMS.Website.Services;
 
-namespace EMS.Website.Services
+namespace EMS.Website
 {
     public static class EmailSenderExtensions
     {

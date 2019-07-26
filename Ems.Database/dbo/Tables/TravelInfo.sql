@@ -4,7 +4,6 @@
     [CreatedDate]   DATETIME2 (7)  NOT NULL,
     [ModifiedDate]  DATETIME2 (7)  NULL,
     [ModifiedBy]    NVARCHAR (MAX) NULL,
-    [EmployeeID]    INT            NOT NULL,
     [Destination]   NVARCHAR (MAX) NULL,
     [Purpose]       NVARCHAR (MAX) NULL,
     [Date]          DATETIME2 (7)  NOT NULL,
@@ -20,8 +19,7 @@
     [EmployeeFName] NVARCHAR (MAX) DEFAULT (N'') NOT NULL,
     [EmployeeLName] NVARCHAR (MAX) NULL,
     [IBAN]          NVARCHAR (MAX) NULL,
-    CONSTRAINT [PK_TravelInfo] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_TravelInfo_Employee_EmployeeID] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([ID])
+    CONSTRAINT [PK_TravelInfo] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
 
@@ -29,7 +27,8 @@
 
 
 
+
+
 GO
-CREATE NONCLUSTERED INDEX [IX_TravelInfo_EmployeeID]
-    ON [dbo].[TravelInfo]([EmployeeID] ASC);
+
 

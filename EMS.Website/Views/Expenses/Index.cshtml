@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<EMS.Entity.DtoModel.TravelDto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Expense List";
     ViewData["Nav"] = "Expenses";
-    var isUserTeamLead = User.IsInRole("TeamLead") || User.IsInRole("Admin");
+    var isUserTeamLead = User.IsInRole("TeamLead") || User.IsInRole("Admin") || User.IsInRole("Finance");
 }
 
 @section Breadcrumbs{
@@ -97,7 +97,7 @@
                         }
                         else
                         {
-                    <button type="button" class="btn btn-@cssClass" style="min-width: 96px">@item.GetApproval</button>
+                    <button type="button" class="btn btn-@cssClass" style="min-width: 96px" disabled>@item.GetApproval</button>
                         }
 
                 </td>
@@ -105,7 +105,7 @@
                     <a asp-action="Edit" asp-route-id="@item.TravelId" title="Edit"><i class="fas fa-edit"></i></a> |
                     @*<a asp-action="Details" asp-route-id="@item.TravelId" title="Details"><i class="fas fa-info"></i></a> |*@
                     <a href="#" onclick="DeleteExpenses(@item.TravelId)" title="Delete"><i class="fas fa-trash"></i></a> |
-                    <a href="@item.RecieptDoc" title="Delete"><i class="fas fa-file-download"></i></a>
+                    <a href="@item.RecieptDoc" title="File download"><i class="fas fa-file-download"></i></a>
                 </td>
             </tr>
             }

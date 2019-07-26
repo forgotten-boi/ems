@@ -47,19 +47,18 @@ namespace EMS.Repository
         public virtual async Task AddAsync(T entity)
         {
             await Repository.AddAsync(entity);
-            //  await _businessContext.CommitAsync();
         }
 
         public virtual async Task UpdateAsync(T entity)
         {
             await Task.Run(() => Repository.Update(entity));
-            //  await _businessContext.CommitAsync();
+          
         }
 
         public virtual async Task DeleteAsync(T2 id)
         {
             await Repository.DeleteAsync(id);
-            // await _businessContext.CommitAsync();
+          
         }
 
         public virtual async Task<T> GetByIDAsync(T2 id)

@@ -126,16 +126,7 @@ namespace EMS.Infrastructure.Extensions
             else
             {
                 return query;
-            }
-            //If textbox is one and searchable columns are listed in searchablecolumn list 
-            //var searchableColumnsList = filter.SearchableColumn.Split(',').ToList();
-
-            //foreach (var searchString in searchableColumnsList)
-            //{
-            //    queryResult.AddRange(query.Where(searchString + ".ToLower().Contains(@0)", filter.makeID.ToLower()));
-            //}
-            //return queryResult?.GroupBy(x => x.Equals("Id")).Select(y => y.FirstOrDefault())?.AsQueryable();
-        }
+            } }
 
         
 

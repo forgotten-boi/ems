@@ -5,10 +5,7 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="IServices\IMovieInfoService.cs" />
-    <Compile Remove="Services\MovieInfoService.cs" />
-  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />

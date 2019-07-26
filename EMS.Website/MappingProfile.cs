@@ -28,6 +28,8 @@ namespace EMS.Website
 
             CreateMap<TravelInfo, TravelDto>().ForMember(x => x.TravelId, opts => opts.MapFrom(x => x.ID))
                 .ForMember(y => y.RecieptFile, z => z.Ignore())
+                .ForMember(y => y.IsApproved, z => z.Ignore())
+              
                 .ReverseMap();
             CreateMap<TravelExpenses, TravelExpenseDto>().ForMember(x => x.TravelExpId, opts => opts.MapFrom(x => x.ID))
                 .ReverseMap();

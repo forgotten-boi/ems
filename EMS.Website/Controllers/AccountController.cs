@@ -69,7 +69,7 @@ namespace EMS.Website.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation($"User {model.UserName} logged in.");
-                    return RedirectToLocal("Home");
+                    return RedirectToLocal("Expenses");
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -295,7 +295,7 @@ namespace EMS.Website.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(ExpensesController.Index), "Expenses");
         }
 
         [HttpPost]
@@ -503,7 +503,7 @@ namespace EMS.Website.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(ExpensesController.Index), "Home");
             }
         }
 

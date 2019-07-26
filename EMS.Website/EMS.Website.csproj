@@ -1,86 +1,54 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <UserSecretsId>aspnet-EMS.Website-018C7A66-6420-4E86-94C4-CC57B267B3F6</UserSecretsId>
-	    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
-    <LangVersion>7.3</LangVersion>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.2</TargetFramework>
+		<UserSecretsId>aspnet-EMS.Website-018C7A66-6420-4E86-94C4-CC57B267B3F6</UserSecretsId>
+			<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+		<LangVersion>7.3</LangVersion>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Views\ArtistInfo\**" />
-    <Compile Remove="Views\BannerInfo\**" />
-    <Compile Remove="Views\DistributerReg\**" />
-    <Compile Remove="Views\ExhibitorsDetails\**" />
-    <Compile Remove="Views\MovieInfo\**" />
-    <Compile Remove="Views\ProducerProfile\**" />
-    <Content Remove="Views\ArtistInfo\**" />
-    <Content Remove="Views\BannerInfo\**" />
-    <Content Remove="Views\DistributerReg\**" />
-    <Content Remove="Views\ExhibitorsDetails\**" />
-    <Content Remove="Views\MovieInfo\**" />
-    <Content Remove="Views\ProducerProfile\**" />
-    <EmbeddedResource Remove="Views\ArtistInfo\**" />
-    <EmbeddedResource Remove="Views\BannerInfo\**" />
-    <EmbeddedResource Remove="Views\DistributerReg\**" />
-    <EmbeddedResource Remove="Views\ExhibitorsDetails\**" />
-    <EmbeddedResource Remove="Views\MovieInfo\**" />
-    <EmbeddedResource Remove="Views\ProducerProfile\**" />
-    <None Remove="Views\ArtistInfo\**" />
-    <None Remove="Views\BannerInfo\**" />
-    <None Remove="Views\DistributerReg\**" />
-    <None Remove="Views\ExhibitorsDetails\**" />
-    <None Remove="Views\MovieInfo\**" />
-    <None Remove="Views\ProducerProfile\**" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Controllers\ArtistInfoController.cs" />
-    <Compile Remove="Controllers\BannerInfoController.cs" />
-    <Compile Remove="Controllers\DistributerRegController.cs" />
-    <Compile Remove="Controllers\ExhibitorsDetailsController.cs" />
-    <Compile Remove="Controllers\MovieInfoController.cs" />
-    <Compile Remove="Controllers\ProducerProfileController.cs" />
-    <Compile Remove="Extensions\Utilities.cs" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\images\logo.png" />
-  </ItemGroup>
-  <!--<ItemGroup>
-    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>-->
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" PrivateAssets="All" />
-    <PackageReference Include="NLog" Version="4.6.6" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.4" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\images\logo.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Remove="wwwroot\images\logo.png" />
+	</ItemGroup>
+	<!--<ItemGroup>
+		<None Update="app.db" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>-->
 
-  <ItemGroup>
-    <ProjectReference Include="..\EMS.DataAccess\EMS.DataAccess.csproj" />
-    <ProjectReference Include="..\EMS.Entity\EMS.Entity.csproj" />
-    <ProjectReference Include="..\EMS.Infrastructure\EMS.Infrastructure.csproj" />
-    <ProjectReference Include="..\EMS.Repository\EMS.Repository.csproj" />
-    <ProjectReference Include="..\EMS.Services\EMS.Services.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="8.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" PrivateAssets="All" />
+		<PackageReference Include="NLog" Version="4.6.6" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="4.8.4" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Update="nlog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="wwwroot\images\logo.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="logs\" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\EMS.DataAccess\EMS.DataAccess.csproj" />
+		<ProjectReference Include="..\EMS.Entity\EMS.Entity.csproj" />
+		<ProjectReference Include="..\EMS.Infrastructure\EMS.Infrastructure.csproj" />
+		<ProjectReference Include="..\EMS.Repository\EMS.Repository.csproj" />
+		<ProjectReference Include="..\EMS.Services\EMS.Services.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="nlog.config">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="logs\" />
+		<Folder Include="wwwroot\RecieptDoc\" />
+	</ItemGroup>
 
 </Project>

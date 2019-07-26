@@ -27,6 +27,7 @@ namespace EMS.Website.Controllers
     public class ExpensesController : Controller
     {
         private readonly ITravelInfoService _travelService;
+        private readonly ITravelExpensesService _travelExpService;
         private readonly IMstExpensesService _mstExpensesService;
         
 
@@ -44,6 +45,7 @@ namespace EMS.Website.Controllers
             RoleManager<IdentityRole> roleManager,
             IApprovalInfoService approvalInfoService,
             IMstExpensesService mstExpensesService,
+            ITravelExpensesService travelExpService,
             ILogger<AccountController> logger)
         {
             _travelService = travelService;
@@ -54,6 +56,7 @@ namespace EMS.Website.Controllers
             _approvalInfoService = approvalInfoService;
             _logger = logger;
             _mstExpensesService = mstExpensesService;
+            _travelExpService = travelExpService;
         }
 
 
@@ -66,24 +69,6 @@ namespace EMS.Website.Controllers
             return View(travelDtoList);
         }
 
-        // GET: Expenses/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var travelInfo = await _travelService
-               .FindByIdAsync(m => m.ID == id);
-            if (travelInfo == null)
-            {
-                return NotFound();
-            }
-            var bannerDto = _mapper.Map<TravelInfo, TravelDto>(travelInfo);
-
-            return View(bannerDto);
-        }
 
         // GET: Expenses/Create
         public async Task<ActionResult> Create()
@@ -108,32 +93,46 @@ namespace EMS.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                var recieptDoc = await FileHelper.FileUploadDataAsync(travelModel.RecieptFile, "RecieptDoc");
+               
 
                 var travelInfo = _mapper.Map<TravelDto, TravelInfo>(travelModel);
                 var travelExp = _mapper.Map<ICollection<TravelExpenseDto>, ICollection<TravelExpenses>>(travelModel.TravelExpensesDtos);
 
-                travelInfo.RecieptDoc = recieptDoc;
                 travelInfo.Date = DateTime.Now;
                 travelInfo.TravelExpenses = travelExp;
                 await _travelService.AddAsync(travelInfo);
 
+                await SendMailToTeamLeadAsync();
 
-
-                var user = await _userManager.GetUserAsync(User);
-                var teamLead =  _userManager.Users.FirstOrDefault(p=> p.Id == user.TeamLeadId);
-                var callbackUrl = Url.Action("Index");
-
-                await _emailSender.SendEmailAsync(teamLead.Email, "Approve/Reject Travel Expenses",
-                 $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
-                
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new
+                    {
+                        message = $"The travel expenses with purpose {travelInfo.Purpose}'s has been uploaded."
+                    });
+                }
 
                 return RedirectToAction(nameof(Index));
 
             }
             return View(travelModel);
+        }
 
 
+      
+
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,TeamLead,Employee")]
+        public async Task<string> FileUpload(IList<IFormFile> RecieptFiles)
+        {
+            if (Request.Form != null && Request.Form.Files?.Count > 0)
+            {
+                var recieptFile = Request.Form.Files[0];
+                var recieptDoc = await FileHelper.FileUploadDataAsync(recieptFile, "RecieptDoc");
+                return recieptDoc;
+            }
+            return null;
         }
 
         // GET: Expenses/Edit/5
@@ -146,12 +145,15 @@ namespace EMS.Website.Controllers
 
             var travelInfo = await _travelService
                 .FindByIdAsync(m => m.ID == id);
+            var travelExpenses = await _travelExpService.GetFilteredAsync(p => p.TravelID == travelInfo.ID);
+
             if (travelInfo == null)
             {
                 return NotFound();
             }
             var  travelDto = _mapper.Map<TravelInfo, TravelDto>(travelInfo);
 
+            travelDto.TravelExpensesDtos =  _mapper.Map<ICollection<TravelExpenses>, ICollection<TravelExpenseDto>>(travelExpenses.ToList());
             return View(travelDto);
         }
 
@@ -197,8 +199,10 @@ namespace EMS.Website.Controllers
             }
             return View(travelModel);
         }
-        [Authorize(Roles = "Admin,TeamLead,Employee")]
+
+
         // GET: Expenses/Delete/5
+        [Authorize(Roles = "Admin,TeamLead,Employee")]
         public async Task<JsonResult> Delete(int id)
         {
             var travelInfo = await _travelService.GetByIDAsync(id);
@@ -272,13 +276,7 @@ namespace EMS.Website.Controllers
 
                 if (status)
                 {
-                    var financeUsers = await _userManager.GetUsersInRoleAsync("Finance");
-                    var financeUser = financeUsers.FirstOrDefault();
-
-
-                    var callbackUrl = Url.Content("~/" + travelInfo.RecieptDoc);
-                    await _emailSender.SendEmailAsync(financeUser.Email, "Approve/Reject Travel Expenses",
-                     $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
+                    await SendMailToFinanceAsync(travelInfo.RecieptDoc);
                 }
             });
 
@@ -286,6 +284,28 @@ namespace EMS.Website.Controllers
             {
                 message = $"The travel expenses with purpose {travelInfo.Purpose}'s status has Updated"
             });
+        }
+
+        public async Task SendMailToTeamLeadAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var teamLead = _userManager.Users.FirstOrDefault(p => p.Id == user.TeamLeadId);
+            var callbackUrl = this.HttpContext.Request.Host;
+
+            await _emailSender.SendEmailAsync(teamLead.Email, "Approve/Reject Travel Expenses",
+             $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
+
+        }
+        public async Task SendMailToFinanceAsync(string recieptDoc)
+        {
+            var financeUsers = await _userManager.GetUsersInRoleAsync("Finance");
+            var financeUser = financeUsers.FirstOrDefault();
+
+
+            var callbackUrl = Url.Content(this.HttpContext.Request.Host + "/" + recieptDoc);
+            await _emailSender.SendEmailAsync(financeUser.Email, "Approved Reciept",
+             $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
+
         }
     }
 }
