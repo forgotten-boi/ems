@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EMS.Entity.BaseEntity;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace EMS.Entity.DtoModel
+namespace EMS.Entity.Entities
 {
-    public class EmployeeDto
+    public class EmployeeInfo : BaseEntity<int>
     {
-        [Key]
-        public int EmployeeId { get; set; }
         [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,6 +13,7 @@ namespace EMS.Entity.DtoModel
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+    
+     
     }
-
 }

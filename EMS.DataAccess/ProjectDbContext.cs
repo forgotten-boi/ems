@@ -39,15 +39,7 @@ namespace EMS.DataAccess
                  .HasOne(e => e.TravelInfo)
                  .WithMany(c => c.TravelExpenses).HasForeignKey(e=>e.TravelID);
 
-            //builder.Entity<TravelInfo>()
-            //     .HasOne(e => e.EmployeeInfo)
-            //     .WithMany(c => c.TravelInfos)
-            //        .HasForeignKey(e=>e.EmployeeID);
-
          
-
-
-            //optionsBuilder.UseSqlServer(ConfigurationManager);
             base.OnModelCreating(builder);
        
         }
