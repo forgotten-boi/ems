@@ -69,7 +69,7 @@ namespace EMS.Website.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation($"User {model.UserName} logged in.");
-                    return RedirectToLocal("Home");
+                    return RedirectToLocal("Expenses");
                 }
                 if (result.RequiresTwoFactor)
                 {

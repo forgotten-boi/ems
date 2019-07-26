@@ -87,33 +87,26 @@
                     <span>Dashboard</span>
                 </a>
             </li>*@
-            @if (User.IsInRole("Employee") || User.IsInRole("Admin"))
-            {
+           
                 <li class="nav-item">
                     <a is-active-route class="nav-link" asp-controller="Expenses" asp-action="Index">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Expenses Management</span>
+                        @if (User.IsInRole("Employee") || User.IsInRole("Admin"))
+                        {
+                            <span>Expenses Management</span>
+                        }
+                        @if (User.IsInRole("TeamLead"))
+                        {
+                            <span>Team Expense Management</span>
+                        }
+                        @if (User.IsInRole("Finance") || User.IsInRole("Admin"))
+                        {
+                            <span>Finance Management</span>
+                        }
+                    
                     </a>
                 </li>
-            }
-            @if (User.IsInRole("TeamLead"))
-            {
-                <li class="nav-item">
-                    <a is-active-route class="nav-link" asp-controller="Expenses" asp-action="Index">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Team Expense Management</span>
-                    </a>
-                </li>
-            }
-            @if (User.IsInRole("Finance") || User.IsInRole("Admin"))
-            {
-            <li class="nav-item">
-                <a is-active-route class="nav-link" asp-controller="Expenses" asp-action="Index">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Finance Management</span>
-                </a>
-            </li>
-            }
+            
            
             @if (User.IsInRole("Admin"))
             {

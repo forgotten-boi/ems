@@ -102,7 +102,7 @@ namespace EMS.Website.Controllers
 
         // POST: Expenses/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [Authorize(Roles ="Admin,TeamLead,Employee")]
         public async Task<IActionResult> Create(TravelDto travelModel)
         {
@@ -134,6 +134,18 @@ namespace EMS.Website.Controllers
             return View(travelModel);
 
 
+        }
+
+        [HttpPost]
+        public async Task<string> FileUpload(IList<IFormFile> RecieptFiles)
+        {
+            if (Request.Form != null && Request.Form.Files?.Count > 0)
+            {
+                var recieptFile = Request.Form.Files[0];
+                var recieptDoc = await FileHelper.FileUploadDataAsync(recieptFile, "RecieptDoc");
+                return recieptDoc;
+            }
+            return null;
         }
 
         // GET: Expenses/Edit/5
