@@ -4,10 +4,34 @@
         $("#form input, #form select").prop("readonly", true);
         $("#form input").prop("disabled", true);
     }
+
+    $('#ExpensesList').hide();
+    $('#btnExpenses').click(function () {
+        $('#ExpensesList').show();
+    });
 });
+(function ($) {
+    $.fn.serializeFormJSON = function () {
+
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+})(jQuery);
 
 
 $("#btnAdd").on('click', function () {
+    
     var date = $('#Date').val();
     var details = $("#Details option:selected").text();
     var price = $("#Price").val();
@@ -55,90 +79,24 @@ $('#Items').on('click', '.btnDelete', function () {
     calculateSum();
 });
 
-(function ($) {
-    $.fn.serializeFormJSON = function () {
-
-        var o = {};
-        var a = this.serializeArray();
-        $.each(a, function () {
-            if (o[this.name]) {
-                if (!o[this.name].push) {
-                    o[this.name] = [o[this.name]];
-                }
-                o[this.name].push(this.value || '');
-            } else {
-                o[this.name] = this.value || '';
-            }
-        });
-        return o;
-    };
-})(jQuery);
-
-
-
-
-
 $(document).ready(function () {
 
-    var recieptPath = '';
-    function uploadFiles(inputId) {
-        var input = document.getElementById(inputId);
-        var files = input.files;
-        var formData = new FormData();
+  
 
-        for (var i = 0; i != files.length; i++) {
-            formData.append("files", files[i]);
-        }
-        console.log(formData);
-        $.ajax(
-            {
-                url: "/Expenses/FileUpload",
-                data: formData,
-                processData: false,
-                contentType: false,
-                type: "POST",
-                success: function (data) {
-                    alert("Files Uploaded!");
-                    console.log(data);
-                    recieptPath = data;
-                }
-            }
-        );
-    }
-
-    $("#btnSubmit").click(function (e) {
-        //$("#form").submit(function (e) {
-        debugger;
+    // $("#btnSubmit").click(function (e) {
+    $("#form").submit(function (e) {
 
 
-        uploadFiles("RecieptFile");
         var formData = $(this).serializeFormJSON();
-            console.log(formData);
-            e.preventDefault();
+        console.log(formData);
+        e.preventDefault();
 
-
+        var object = formData;
 
         var list = [];
-       
+
 
         console.log(list);
-        var object = {
-            employeeFName: $('#EmployeeFName').val(),
-            employeeLName: $('#EmployeeLName').val(),
-            destination: $('#Destination').val(),
-            purpose: $('#Purpose').val(),
-            recieptDoc: recieptPath,
-            iBAN: $('#IBAN').val(),
-            bankName: $('#BankName').val(),
-            department: $('#Department').val(),
-            currency: $('#Currency').val(),
-            startDate: $('#StartDate').val(),
-            endDate: $('#EndDate').val(),
-            startTime: $('#StartTime').val(),
-            endTime: $('#EndTime').val(),
-            travelExpenseDto: list
-
-        };
 
         object.TravelExpensesDtos = [];
         $('#Items tr').each(function (index, ele) {
@@ -151,26 +109,53 @@ $(document).ready(function () {
 
             object.TravelExpensesDtos.push(orderItem);
         });
-      
-       
+
+
 
         console.log(object);
         var json = JSON.stringify(object);
         console.log(json);
+        var input = document.getElementById('#RecieptFile');
+        var files = input.files;
+        var fileData = new FormData();
 
-        $.ajax({
-            type: 'POST',
-            url: '/Expenses/Create',
-            datatype: "Json",
-            data: object,
-            //contentType: 'application/json',
-            success: function () {
-                //alert('Successfully saved');
-            },
-            error: function (error) {
-                console.log(error);
+        for (var i = 0; i !== files.length; i++) {
+            fileData.append("files", files[i]);
+        }
+        console.log(fileData);
+        $.ajax(
+            {
+                url: "/Expenses/FileUpload",
+                data: fileData,
+                processData: false,
+                contentType: false,
+                type: "POST",
+                success: function (data) {
+
+                    recieptPath = data;
+                    object.recieptPath = data;
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Expenses/Create',
+                        datatype: "Json",
+                        data: object,
+                        //contentType: 'application/json',
+                        success: function (data) {
+                            console.log(data);
+                            if (data !== null) {
+                                alert(data.message);
+                            }
+                            location.href('/Expenses/Index');
+                            
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                }
             }
-        });
+        );
+
     });
 
 });

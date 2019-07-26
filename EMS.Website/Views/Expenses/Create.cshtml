@@ -112,6 +112,47 @@
             </div>
         </div>
 
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="IBAN" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="IBAN" class="form-control" />
+                        <span asp-validation-for="IBAN" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="BankName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="BankName" class="form-control" />
+                        <span asp-validation-for="BankName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="Department" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Department" class="form-control" />
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Currency" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Currency" class="form-control" />
+                        <span asp-validation-for="Currency" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="form-row">
                 <div class="col-md-6">
@@ -128,13 +169,13 @@
         </div>
         <hr />
         <div class="col-md-10 col-md-offset-1">
-            <div class="col-md-4 ">
+            <div class="col-md-4 pull-right">
                 <br />
-                <input type="button" value="Add Expenses" data-toggle="modal" data-target="#loginModal" class="button primary" />
+                <input type="button" value="Add Expenses" id="btnExpenses" data-toggle="modal" data-target="#loginModal" class="btn btn-primary" />
             </div>
         </div>
         <hr />
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1" id="ExpensesList">
             <div class="col-md-10 col-md-offset-1">
                 <br />
                 <br />
@@ -142,9 +183,9 @@
                     <thead>
                         <tr>
 
-                            <td>Details</td>
-                            <td>Price </td>
                             <td>Date</td>
+                            <td>Details </td>
+                            <td>Expenses</td>
 
                             <td></td>
                         </tr>
@@ -157,7 +198,7 @@
         <div class="form-group">
             <div class="form-row">
                 <div class="col-md-6">
-                    <input type="button" value="Create" class="btn btn-primary pull-right" id="btnSubmit" />
+                    <input type="submit" value="Create" class="btn btn-primary pull-right" id="btnSubmit" />
                 </div>
             </div>
         </div>

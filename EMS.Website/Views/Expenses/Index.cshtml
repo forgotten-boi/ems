@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     ViewData["Nav"] = "Expenses";
-    var isUserTeamLead = User.IsInRole("TeamLead") || User.IsInRole("Admin");
+    var isUserTeamLead = User.IsInRole("TeamLead") || User.IsInRole("Admin") || User.IsInRole("Finance");
 }
 
 @section Breadcrumbs{
@@ -97,7 +97,7 @@
                         }
                         else
                         {
-                    <button type="button" class="btn btn-@cssClass" style="min-width: 96px">@item.GetApproval</button>
+                    <button type="button" class="btn btn-@cssClass" style="min-width: 96px" disabled>@item.GetApproval</button>
                         }
 
                 </td>

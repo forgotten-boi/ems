@@ -112,6 +112,47 @@
         <div class="form-group">
             <div class="form-row">
                 <div class="col-md-6">
+                    <label asp-for="IBAN" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="IBAN" class="form-control" />
+                        <span asp-validation-for="IBAN" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="BankName" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="BankName" class="form-control" />
+                        <span asp-validation-for="BankName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="Department" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Department" class="form-control" />
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Currency" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="Currency" class="form-control" />
+                        <span asp-validation-for="Currency" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
                     <label asp-for="RecieptFile" class="control-label"></label>
                     <div class="form-label-group">
                         <input type="file" asp-for="RecieptFile" class="form-control" id="RecieptFile" name="RecieptFile" />
@@ -120,6 +161,42 @@
                 </div>
             </div>
         </div>
+        @{ 
+            var travelExpenses = Model.TravelExpensesDtos;
+        }
+
+        @if (travelExpenses != null && travelExpenses.Count > 0)
+        {
+            <div class="col-md-10 col-md-offset-1" id="ExpensesList">
+            <div class="col-md-10 col-md-offset-1">
+                <hr />
+                Expenses Details
+                <hr />
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+
+                            <td>Details</td>
+                            <td>Price </td>
+                            <td>Date</td>
+
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="Items">
+                        @foreach (var item in travelExpenses)
+                        {
+                            <tr>
+                                <td class="Details">@item.Details</td>
+                                <td class="Date">@item.Date</td>
+                                <td class="Expenses">@item.Expenses</td>
+                            </tr>
+                        }
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        }
         <div>
             <input type="hidden" asp-for="TravelId" />
         </div>

@@ -102,39 +102,40 @@ namespace EMS.Website.Controllers
 
         // POST: Expenses/Create
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles ="Admin,TeamLead,Employee")]
         public async Task<IActionResult> Create(TravelDto travelModel)
         {
             if (ModelState.IsValid)
             {
-                var recieptDoc = await FileHelper.FileUploadDataAsync(travelModel.RecieptFile, "RecieptDoc");
+               
 
                 var travelInfo = _mapper.Map<TravelDto, TravelInfo>(travelModel);
                 var travelExp = _mapper.Map<ICollection<TravelExpenseDto>, ICollection<TravelExpenses>>(travelModel.TravelExpensesDtos);
 
-                travelInfo.RecieptDoc = recieptDoc;
                 travelInfo.Date = DateTime.Now;
                 travelInfo.TravelExpenses = travelExp;
                 await _travelService.AddAsync(travelInfo);
 
+                await SendMailToTeamLeadAsync();
 
-
-                var user = await _userManager.GetUserAsync(User);
-                var teamLead =  _userManager.Users.FirstOrDefault(p=> p.Id == user.TeamLeadId);
-                var callbackUrl = Url.Action("Index");
-
-                await _emailSender.SendEmailAsync(teamLead.Email, "Approve/Reject Travel Expenses",
-                 $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
-                
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new
+                    {
+                        message = $"The travel expenses with purpose {travelInfo.Purpose}'s has been uploaded."
+                    });
+                }
 
                 return RedirectToAction(nameof(Index));
 
             }
             return View(travelModel);
-
-
         }
+
+
+      
+
 
         [HttpPost]
         public async Task<string> FileUpload(IList<IFormFile> RecieptFiles)
@@ -209,8 +210,10 @@ namespace EMS.Website.Controllers
             }
             return View(travelModel);
         }
-        [Authorize(Roles = "Admin,TeamLead,Employee")]
+
+
         // GET: Expenses/Delete/5
+        [Authorize(Roles = "Admin,TeamLead,Employee")]
         public async Task<JsonResult> Delete(int id)
         {
             var travelInfo = await _travelService.GetByIDAsync(id);
@@ -284,13 +287,7 @@ namespace EMS.Website.Controllers
 
                 if (status)
                 {
-                    var financeUsers = await _userManager.GetUsersInRoleAsync("Finance");
-                    var financeUser = financeUsers.FirstOrDefault();
-
-
-                    var callbackUrl = Url.Content("~/" + travelInfo.RecieptDoc);
-                    await _emailSender.SendEmailAsync(financeUser.Email, "Approve/Reject Travel Expenses",
-                     $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
+                    await SendMailToFinanceAsync(travelInfo.RecieptDoc);
                 }
             });
 
@@ -298,6 +295,28 @@ namespace EMS.Website.Controllers
             {
                 message = $"The travel expenses with purpose {travelInfo.Purpose}'s status has Updated"
             });
+        }
+
+        public async Task SendMailToTeamLeadAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var teamLead = _userManager.Users.FirstOrDefault(p => p.Id == user.TeamLeadId);
+            var callbackUrl = this.HttpContext.Request.Host;
+
+            await _emailSender.SendEmailAsync(teamLead.Email, "Approve/Reject Travel Expenses",
+             $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
+
+        }
+        public async Task SendMailToFinanceAsync(string recieptDoc)
+        {
+            var financeUsers = await _userManager.GetUsersInRoleAsync("Finance");
+            var financeUser = financeUsers.FirstOrDefault();
+
+
+            var callbackUrl = Url.Content(this.HttpContext.Request.Host + "/" + recieptDoc);
+            await _emailSender.SendEmailAsync(financeUser.Email, "Approved Reciept",
+             $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
+
         }
     }
 }
