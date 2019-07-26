@@ -64,7 +64,7 @@ $("#btnAdd").on('click', function () {
 function calculateSum() {
     var sum = 0;
     // iterate through each td based on class and add the values
-    $(".price").each(function () {
+    $(".expenses").each(function () {
 
         var value = $(this).text();
         // add only if the value is number
@@ -73,10 +73,8 @@ function calculateSum() {
         }
     });
 
-    //$('#TotalAmount').val(sum);
-    //var a = $('#TotalAmount').val();
-    //var b = $('#GivenAmount').val();
-    //$('#ChangeAmount').val(a - b);
+    $('#TotalExpenses').val(sum);
+   
 };
 
 $('#Items').on('click', '.btnDelete', function () {

@@ -69,24 +69,6 @@ namespace EMS.Website.Controllers
             return View(travelDtoList);
         }
 
-        // GET: Expenses/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var travelInfo = await _travelService
-               .FindByIdAsync(m => m.ID == id);
-            if (travelInfo == null)
-            {
-                return NotFound();
-            }
-            var bannerDto = _mapper.Map<TravelInfo, TravelDto>(travelInfo);
-
-            return View(bannerDto);
-        }
 
         // GET: Expenses/Create
         public async Task<ActionResult> Create()

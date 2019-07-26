@@ -17,7 +17,7 @@ namespace EMS.Entity.Entities
         [EmailAddress]
         public string Email { get; set; }
     
-        //public virtual ICollection<TravelInfo> TravelInfos { get; set; }
+     
     }
 
     public class TravelInfo : BaseEntity<int>
@@ -37,6 +37,7 @@ namespace EMS.Entity.Entities
         public string BankName { get; set; }
         public string Department { get; set; }
         public string Currency { get; set; }
+        public double TotalExpenses { get; set; }
 
         private DateTime UpdateDate;
         public DateTime Date

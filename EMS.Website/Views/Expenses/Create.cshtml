@@ -1,7 +1,7 @@
 ﻿@model EMS.Entity.DtoModel.TravelDto
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Expense";
     ViewData["Nav"] = "Expenses";
     ViewData["Nav2"] = "Request Expense";
 
@@ -192,6 +192,17 @@
                     </thead>
                     <tbody id="Items"></tbody>
                 </table>
+            </div>
+        </div>
+        <div class="form-group pull-right">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label asp-for="TotalExpenses" class="control-label"></label>
+                    <div class="form-label-group">
+                        <input asp-for="TotalExpenses" class="form-control" readonly />
+                        <span asp-validation-for="TotalExpenses" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
         </div>
         <hr />

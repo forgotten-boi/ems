@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EMS.Entity.DtoModel.TravelDto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Expense List";
     ViewData["Nav"] = "Expenses";
     var isUserTeamLead = User.IsInRole("TeamLead") || User.IsInRole("Admin") || User.IsInRole("Finance");
 }

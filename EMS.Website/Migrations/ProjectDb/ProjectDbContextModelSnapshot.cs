@@ -227,6 +227,8 @@ namespace EMS.Website.Migrations.ProjectDb
 
                     b.Property<DateTime>("StartTime");
 
+                    b.Property<double>("TotalExpenses");
+
                     b.HasKey("ID");
 
                     b.ToTable("TravelInfo");

@@ -7,19 +7,6 @@ using System.Text;
 
 namespace EMS.Entity.DtoModel
 {
-    public class EmployeeDto
-    {
-        [Key]
-        public int EmployeeId { get; set; }
-        [Required]
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-    }
-
     public class TravelDto 
     {
         public TravelDto()
@@ -47,11 +34,12 @@ namespace EMS.Entity.DtoModel
         public string BankName { get; set; }
         public string Department { get; set; }
         public string Currency { get; set; }
+        public double TotalExpenses { get; set; }
 
         private DateTime UpdateDate;
 
-       
 
+        [DataType(DataType.Date)]
         public DateTime Date
         {
             get { return UpdateDate; }
@@ -106,6 +94,7 @@ namespace EMS.Entity.DtoModel
         public bool IsApproved { get; set; }
         public string ApprovedBy { get; set; }
         public string Comment { get; set; }
+        [DataType(DataType.Date)]
         public DateTime ApprovedDate { get; set; }
 
         public double TotalExpenses { get; set; }
@@ -117,6 +106,7 @@ namespace EMS.Entity.DtoModel
         public int MiscExpId { get; set; }
         public string Comment { get; set; }
         public double Price { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
     }
 
@@ -126,6 +116,7 @@ namespace EMS.Entity.DtoModel
         public int EntertainmentFBId { get; set; }
         public string Comment { get; set; }
         public double Price { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
     }
 
@@ -137,6 +128,7 @@ namespace EMS.Entity.DtoModel
 
         public string Details { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         public double Expenses { get; set; }
@@ -149,4 +141,17 @@ namespace EMS.Entity.DtoModel
         public string Comment { get; set; }
         public int Order { get; set; }
     }
+    public class EmployeeDto
+    {
+        [Key]
+        public int EmployeeId { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+    }
+
 }
