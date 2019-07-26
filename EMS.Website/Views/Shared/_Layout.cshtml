@@ -91,7 +91,7 @@
                 <li class="nav-item">
                     <a is-active-route class="nav-link" asp-controller="Expenses" asp-action="Index">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        @if (User.IsInRole("Employee") || User.IsInRole("Admin"))
+                        @if (User.IsInRole("Employee"))
                         {
                             <span>Expenses Management</span>
                         }

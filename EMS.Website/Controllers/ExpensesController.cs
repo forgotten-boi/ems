@@ -27,6 +27,7 @@ namespace EMS.Website.Controllers
     public class ExpensesController : Controller
     {
         private readonly ITravelInfoService _travelService;
+        private readonly ITravelExpensesService _travelExpService;
         private readonly IMstExpensesService _mstExpensesService;
         
 
@@ -44,6 +45,7 @@ namespace EMS.Website.Controllers
             RoleManager<IdentityRole> roleManager,
             IApprovalInfoService approvalInfoService,
             IMstExpensesService mstExpensesService,
+            ITravelExpensesService travelExpService,
             ILogger<AccountController> logger)
         {
             _travelService = travelService;
@@ -54,6 +56,7 @@ namespace EMS.Website.Controllers
             _approvalInfoService = approvalInfoService;
             _logger = logger;
             _mstExpensesService = mstExpensesService;
+            _travelExpService = travelExpService;
         }
 
 
@@ -160,12 +163,15 @@ namespace EMS.Website.Controllers
 
             var travelInfo = await _travelService
                 .FindByIdAsync(m => m.ID == id);
+            var travelExpenses = await _travelExpService.GetFilteredAsync(p => p.TravelID == travelInfo.ID);
+
             if (travelInfo == null)
             {
                 return NotFound();
             }
             var  travelDto = _mapper.Map<TravelInfo, TravelDto>(travelInfo);
 
+            travelDto.TravelExpensesDtos =  _mapper.Map<ICollection<TravelExpenses>, ICollection<TravelExpenseDto>>(travelExpenses.ToList());
             return View(travelDto);
         }
 

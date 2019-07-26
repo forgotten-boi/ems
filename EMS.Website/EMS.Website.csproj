@@ -48,6 +48,7 @@
 
 	<ItemGroup>
 		<Folder Include="logs\" />
+		<Folder Include="wwwroot\RecieptDoc\" />
 	</ItemGroup>
 
 </Project>
