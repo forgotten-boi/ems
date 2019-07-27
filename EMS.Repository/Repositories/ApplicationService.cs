@@ -31,18 +31,7 @@ namespace EMS.Repository
             return await Repository.GetAllAsync();
         }
 
-        public async Task<QueryResult<T>> GetAllPagedAsync(Filter filter)
-        {
-            var query = Repository.GetAllQueryable();
-            var pagedQuery = query.ApplyCompletePagination(filter);
-            var result = new QueryResult<T>
-            {
-                TotalItems = query.Count(),
-
-                Items = pagedQuery.AsEnumerable()
-            };
-            return result;
-        }
+     
 
         public virtual async Task AddAsync(T entity)
         {

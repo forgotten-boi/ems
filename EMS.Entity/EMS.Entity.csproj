@@ -5,6 +5,16 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="DtoModel\Filter.cs" />
+    <Compile Remove="DtoModel\ValidationDto.cs" />
+    <Compile Remove="Entities\FilterResource.cs" />
+    <Compile Remove="Entities\Language.cs" />
+    <Compile Remove="Entities\QueryResult.cs" />
+    <Compile Remove="Entities\SearchData.cs" />
+    <Compile Remove="Entities\UserInfo.cs" />
+  </ItemGroup>
+
 
 
   <ItemGroup>
