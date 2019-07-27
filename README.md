@@ -1,7 +1,6 @@
 # Expense Management system!
 
 This project is a MVP for the challenge for the position of  **ASP.NET Software Engineering**. 
-In this project, 
 
 ## About this project
 
