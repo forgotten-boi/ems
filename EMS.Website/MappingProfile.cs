@@ -8,23 +8,7 @@ namespace EMS.Website
     {
         public MappingProfile()
         {
-            // Add as many of these lines as you need to map your objects
-         
-
-            //CreateMap<MovieInfo, MovieDto>().ForMember(x => x.MovieId, opts => opts.MapFrom(x => x.ID))
-            //    .ForMember(y => y.RegDoc, z => z.Ignore())
-            //    .ForMember(y => y.ContractDoc, z => z.Ignore())
-            //    .ForMember(y => y.PermissionDoc, z => z.Ignore())
-            //    .ForMember(y => y.PostProdDoc, z => z.Ignore())
-            //    .ForMember(y => y.ScriptDoc, z => z.Ignore())
-            //    .ForMember(y => y.SensorDoc, z => z.Ignore())
-            //    .ForMember(y => y.SongDoc, z => z.Ignore())
-            //    .ForMember(y => y.MovieBannerDoc, z => z.Ignore())
-            //    .ReverseMap();
-
-
-
-            CreateMap<EmployeeInfo, EmployeeDto>().ForMember(x => x.EmployeeId, opts => opts.MapFrom(x => x.ID)).ReverseMap();
+           
 
             CreateMap<TravelInfo, TravelDto>().ForMember(x => x.TravelId, opts => opts.MapFrom(x => x.ID))
                 .ForMember(y => y.RecieptFile, z => z.Ignore())

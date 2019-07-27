@@ -15,7 +15,7 @@ namespace EMS.DataAccess
 
         }
 
-        public DbSet<EmployeeInfo> Employee { get; set; }
+      
         public DbSet<MstExpenses> MstExpenses { get; set; }
         public DbSet<TravelInfo> TravelInfo { get; set; }
         public DbSet<MiscExpenses> MiscExpenses { get; set; }

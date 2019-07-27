@@ -35,7 +35,6 @@ namespace EMS.Website
 
 
             // Add application services.
-            services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
             services.AddScoped(typeof(IApprovalInfoService), typeof(ApprovalInfoService));
             services.AddScoped(typeof(ITravelInfoService), typeof(TravelInfoService));
             services.AddScoped(typeof(IMiscExpensesService), typeof(MiscExpensesService));
@@ -44,8 +43,6 @@ namespace EMS.Website
             services.AddScoped(typeof(IMstExpensesService), typeof(MstExpensesService));
 
 
-
-            services.AddScoped(typeof(IEmployeeRepository), typeof(EmployeeRepository));
             services.AddScoped(typeof(IApprovalRepository), typeof(ApprovalRepository));
             services.AddScoped(typeof(ITravelInfoRepository), typeof(TravelInfoRepository));
             services.AddScoped(typeof(ITravelExpensesRepository), typeof(TravelExpensesRepository));
