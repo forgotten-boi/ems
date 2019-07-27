@@ -4,6 +4,8 @@
     ViewData["Title"] = "Update Expense";
     ViewData["Nav"] = "Expenses";
     ViewData["Nav2"] = "Request Expense";
+    var isFinance = User.IsInRole("Finance").ToString();
+
 
     var user = await _userManager.GetUserAsync(User);
 }
@@ -210,6 +212,8 @@
         </div>
         <div>
             <input type="hidden" asp-for="TravelId" />
+            <input type="hidden" value=@isFinance id="isFinance" />
+
         </div>
         <div class="form-group">
             <div class="form-row">
@@ -231,4 +235,11 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    
+    if ($('#isFinance').val() !== "" && $('#isFinance').val() === 'True') {
+        $("#form input, #form select").prop("readonly", true);
+        $("#form input").prop("disabled", true);
+    }
+</script>
 }

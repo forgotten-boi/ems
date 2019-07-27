@@ -70,7 +70,6 @@
     <Build Include="dbo\Tables\AspNetUserLogins.sql" />
     <Build Include="dbo\Tables\AspNetUserRoles.sql" />
     <Build Include="dbo\Tables\AspNetUserTokens.sql" />
-    <Build Include="dbo\Tables\Employee.sql" />
     <Build Include="dbo\Tables\MiscExpenses.sql" />
     <Build Include="dbo\Tables\MstExpenses.sql" />
     <Build Include="dbo\Tables\TravelInfo.sql" />
