@@ -19,6 +19,7 @@
     [EmployeeFName] NVARCHAR (MAX) DEFAULT (N'') NOT NULL,
     [EmployeeLName] NVARCHAR (MAX) NULL,
     [IBAN]          NVARCHAR (MAX) NULL,
+	[TotalExpenses] [float]   NOT NULL
     CONSTRAINT [PK_TravelInfo] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
