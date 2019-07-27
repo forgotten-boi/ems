@@ -1,7 +1,14 @@
 # Expense Management system!
 
-This project is a MVP for **Finance Department**. 
+This project is a MVP for the challenge for the position of  **ASP.NET Software Engineering**. 
 In this project, 
+
+## About this project
+
+- Also this project is built wilth .net core 2.2 with Ef Core code first. 
+- EMS.Database consits of database project. Simply publish this to any database for up and running.
+- Since this is code first, database can be updated from code as well.
+- EMS.Website is webapplication to be published and deployed.
 
 ## Employee
 
