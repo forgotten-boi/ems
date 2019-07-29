@@ -1,0 +1,5 @@
+Web deployment task failed. (Connected to the remote computer ("zhanish-001-site16.ftempurl.com") using the specified process ("Web Management Service"), but could not verify the server’s certificate. If you trust the server, connect again and allow untrusted certificates.  Learn more at: http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_CERTIFICATE_VALIDATION_FAILED.)
+
+Connected to the remote computer ("zhanish-001-site16.ftempurl.com") using the specified process ("Web Management Service"), but could not verify the server’s certificate. If you trust the server, connect again and allow untrusted certificates.  Learn more at: http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_CERTIFICATE_VALIDATION_FAILED.
+The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+The remote certificate is invalid according to the validation procedure.

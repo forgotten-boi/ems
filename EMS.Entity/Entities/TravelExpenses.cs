@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using EMS.Entity.BaseEntity;
 
@@ -16,5 +17,7 @@ namespace EMS.Entity.Entities
         public DateTime Date { get; set; }
 
         public double Expenses { get; set; }
+
+        public virtual ICollection<MiscExpenses> MiscExpenses { get; set; }
     }
 }

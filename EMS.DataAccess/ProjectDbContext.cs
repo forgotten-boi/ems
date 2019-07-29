@@ -39,7 +39,11 @@ namespace EMS.DataAccess
                  .HasOne(e => e.TravelInfo)
                  .WithMany(c => c.TravelExpenses).HasForeignKey(e=>e.TravelID);
 
-         
+            builder.Entity<MiscExpenses>()
+                 .HasOne(e => e.TravelExpenses)
+                 .WithMany(c => c.MiscExpenses).HasForeignKey(e => e.TraveExpID);
+
+
             base.OnModelCreating(builder);
        
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EMS.Entity.DtoModel
@@ -15,5 +16,7 @@ namespace EMS.Entity.DtoModel
         public DateTime Date { get; set; }
 
         public double Expenses { get; set; }
+
+        public ICollection<MiscExpenseDto> MiscExpensesDtos { get; set; }
     }
 }

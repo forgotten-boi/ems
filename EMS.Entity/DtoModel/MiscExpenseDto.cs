@@ -11,5 +11,9 @@ namespace EMS.Entity.DtoModel
         public double Price { get; set; }
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+
+        public int TravelExpId { get; set; }
+
+
     }
 }
