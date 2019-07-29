@@ -100,6 +100,7 @@ namespace EMS.Website.Controllers
 
                 travelInfo.Date = DateTime.Now;
                 travelInfo.TravelExpenses = travelExp;
+                travelInfo.IsApproved = false;
                 await _travelService.AddAsync(travelInfo);
 
                 await SendMailToTeamLeadAsync();
@@ -179,6 +180,7 @@ namespace EMS.Website.Controllers
                     var travelInfo = _mapper.Map<TravelDto, TravelInfo>(travelModel);
                     travelInfo.RecieptDoc = recieptPath;
                     travelInfo.Date = DateTime.Now;
+                    travelInfo.IsApproved = false;
 
                     await _travelService.UpdateAsync(travelInfo);
                 }
@@ -292,7 +294,7 @@ namespace EMS.Website.Controllers
             var teamLead = _userManager.Users.FirstOrDefault(p => p.Id == user.TeamLeadId);
             var callbackUrl = this.HttpContext.Request.Host;
 
-            await _emailSender.SendEmailAsync(teamLead.Email, "Approve/Reject Travel Expenses",
+            await _emailSender.SendEmailAsync(teamLead.Email, $"Approve/Reject Travel Expenses",
              $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
 
         }
@@ -303,7 +305,7 @@ namespace EMS.Website.Controllers
 
 
             var callbackUrl = Url.Content(this.HttpContext.Request.Host + "/" + recieptDoc);
-            await _emailSender.SendEmailAsync(financeUser.Email, "Approved Reciept",
+            await _emailSender.SendEmailAsync(financeUser.Email, $"Approved Reciept",
              $"A employe name, {User.Identity.Name} has submitted travel expenses. Prease review: <a href='{callbackUrl}'>link</a>");
 
         }
