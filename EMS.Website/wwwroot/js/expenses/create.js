@@ -44,39 +44,43 @@ $("#btnAdd").on('click', function () {
         alert('date, details and price cannot be null');
     }
     else {
+        populateMscList();
         var subRow = '';
-        if (mscList !== undefined && mscList !== null)
-        $.each(mscList, function (index, value) {
-            subRow += `<tr>
-                                        <td class="miscDetails">${value.date}</td>
-                                        <td class="miscDate">${value.details}</td>
-                                        <td class="miscExpenses">${value.expenses}</td>
-
-                                        <td>
-                                           <a class="btnDelete" title="Delete">
-                <i class="fas fa-trash"></i>
-                </a>
-
-                                        </td>
-                                    </tr>`;
-        });
-        var row = `<tr>
-                                    <td class="date">${date}</td>
-                                    <td class="details">${details}
-                                         <table class="mscList">
+        if (mscList !== undefined && mscList !== null) {
+            subRow += `
+                         <table class="mscList">
                                         <thead>
                                             <tr>
                                                 <th>Detail</th>
                                                 <th>Date</th>
                                                 <th>Amount</th>
-                                                <th></th>
+                                                
                                                 
                                             </tr>
                                         </thead>
                                                 <tbody>
-                                                   ${subRow}
-                                                </tbody>
+                            `;
+            $.each(mscList, function (index, value) {
+                subRow += `<tr>
+                                        <td class="miscDetails">${value.date}</td>
+                                        <td class="miscDate">${value.details}</td>
+                                        <td class="miscExpenses">${value.expenses}</td>
+
+                                      
+                                    </tr>`;
+            });
+            subRow += `
+                        </tbody>
                                     </table>
+                        `
+        }
+        var row = `<tr>
+                                    <td class="date">${date}</td>
+                                    <td class="details">${details}
+                                                
+                                                   ${subRow}
+                                               
+                                
                                     </td>
                                     <td class="expenses">${price}</td>
 
@@ -100,7 +104,7 @@ $("#btnAdd").on('click', function () {
     $("#btnMisc").on('click', function () {
 
 
-        var row = ` <li id="">
+        var row = ` <li >
                                         <div class="row">
                                             <input type="date" placeholder="Date" class="form-control col-md-4 miscDate" name="mscDate-${counter}">
                                             <input type="text" placeholder="Details" class="form-control col-md-4 miscDetails" name="Details-${counter}">
@@ -113,22 +117,8 @@ $("#btnAdd").on('click', function () {
                                     </li>`;
 
         $('#mscItem').append(row);
-
-        if (counter !== 0)
-        {
-            var newCounter = counter - 1;
-
-            var mscDate = $('[name=mscDate-' + newCounter + ']').val();
-            var mscDetails = $('[name=Details-' + newCounter+']').val();
-            var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
-
-            var msc = {
-                date: mscDate,
-                details: mscDetails,
-                expnses: mscExpenses
-            };
-            mscList.push(msc);
-            console.log(mscList);
+        calculateMscGrandTotal();
+      
 
             //var rowTable = `<tr>
             //                            <td class="miscDetails">${mscDate}</td>
@@ -146,29 +136,57 @@ $("#btnAdd").on('click', function () {
 
             //$('.mscList').append(rowTable);
         
-        }
+        //}
         counter++;
 
 
     });
 
+   
+  
+    
+    function populateMscList()
+    {
+        for (var newCounter = 0; newCounter < counter; newCounter++) {
+
+           
+
+                var mscDate = $('[name=mscDate-' + newCounter + ']').val();
+                var mscDetails = $('[name=Details-' + newCounter + ']').val();
+                var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
+
+                var msc = {
+                    date: mscDate,
+                    details: mscDetails,
+                    expenses: mscExpenses
+                };
+                mscList.push(msc);
+                console.log(mscList);
+            
+        }
+    }
+
     $("ul.order-list").on("click", ".btnMscDel", function (event) {
         $(this).closest("li").remove();
         counter -= 1;
     });
+
+    $('input[name^="Expenses"]').change(function () {
+        calculateMscGrandTotal();
+    });
 });
 
 function calculateMscRow(row) {
-    var price = +row.find('input[name^="miscExpenses"]').val();
+    var price = +row.find('input[name^="Expenses"]').val();
 
 }
 
 function calculateMscGrandTotal() {
     var grandTotal = 0;
-    $("li.order-list").find('input[name^="miscExpenses"]').each(function () {
+    $("ul.order-list").find('input[name^="Expenses"]').each(function () {
         grandTotal += +$(this).val();
     });
-    $("#TotalExpenses").text(grandTotal.toFixed(2));
+    $("#Price").val(grandTotal.toFixed(2));
 }
 
 
