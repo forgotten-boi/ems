@@ -220,12 +220,12 @@
 <!--modal form-->
 <div class="row">
     <div class="col-md-6">
-        <div class="modal fade bs-example-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
+        <div class="modal fade bd-example-modal-lg" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content mode" style="min-width:1200px">
                     <h4 class="modal-header">Select Expenses</h4>
                     <div class="modal-body">
-                        <div class="container">
+                        <div class="container row">
                             <div class="col-md-6">
                                 <label class="control-label">Expenses Category</label>
                                 @Html.DropDownList("Details", new SelectList(ViewBag.ExpensesList, "Value", "Text"), "Select Expenses Category", new { @class = "form-control mstexpense", id = "Details" })
@@ -238,12 +238,47 @@
                                     @Html.Editor("Expenses", new { htmlAttributes = new { @class = "form-control",@required=true, @type = "number", id = "Price" } })
                                     <br />
                                 </div>
-                            </div>
 
+                                <div>
+                                    <table class="mscList">
+                                        <thead>
+                                            <tr>
+                                                <th>Detail</th>
+                                                <th>Date</th>
+                                                <th>Amount</th>
+                                                <th></th>
+                                                
+                                            </tr>
+                                        </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mscDetail"></td>
+                                                        <td class="mscDate"></td>
+                                                        <td class="mscExpense"></td>
+                                                        <td><a><i class="fa fa-trash"></i></a></td>
+                                                    </tr>
+                                                </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <ul id="mscItem" class="order-list">
+                                    <li>
+                                        <a id="btnMisc" class="btn btn-primary pull-right">
+                                            <span class="fa fa-plus"></span>
+                                        </a>
+                                        <a class="btn btn-primary pull-right">
+                                            <span class="fas fa-trash"></span>
+                                        </a>
+                                       
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <input type="hidden" value=@isFinance id="isFinance" />
-                    <div class="modal-footer">
+                    <div class="modal-footer pull-right">
                         <a id="btnAdd" class="btn btn-primary">
                             <span class="glyphicon glyphicon-plus"></span> Add
                         </a>

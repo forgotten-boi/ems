@@ -29,21 +29,55 @@
     };
 })(jQuery);
 
+$(document).ready(function () {
+
+    var mscList = [];
 
 $("#btnAdd").on('click', function () {
-    
+
     var date = $('#Date').val();
     var details = $("#Details option:selected").text();
     var price = $("#Price").val();
+    var mscDetail = mscList;
 
-    if (date === "" || details === null || price === "")
-    {
+    if (date === "" || details === null || price === "") {
         alert('date, details and price cannot be null');
     }
     else {
+        var subRow = '';
+        if (mscList !== undefined && mscList !== null)
+        $.each(mscList, function (index, value) {
+            subRow += `<tr>
+                                        <td class="miscDetails">${value.date}</td>
+                                        <td class="miscDate">${value.details}</td>
+                                        <td class="miscExpenses">${value.expenses}</td>
+
+                                        <td>
+                                           <a class="btnDelete" title="Delete">
+                <i class="fas fa-trash"></i>
+                </a>
+
+                                        </td>
+                                    </tr>`;
+        });
         var row = `<tr>
                                     <td class="date">${date}</td>
-                                    <td class="details">${details}</td>
+                                    <td class="details">${details}
+                                         <table class="mscList">
+                                        <thead>
+                                            <tr>
+                                                <th>Detail</th>
+                                                <th>Date</th>
+                                                <th>Amount</th>
+                                                <th></th>
+                                                
+                                            </tr>
+                                        </thead>
+                                                <tbody>
+                                                   ${subRow}
+                                                </tbody>
+                                    </table>
+                                    </td>
                                     <td class="expenses">${price}</td>
 
                                     <td>
@@ -60,6 +94,83 @@ $("#btnAdd").on('click', function () {
     //clearValue();
 });
 
+    var counter = 0;
+  
+
+    $("#btnMisc").on('click', function () {
+
+
+        var row = ` <li id="">
+                                        <div class="row">
+                                            <input type="date" placeholder="Date" class="form-control col-md-4 miscDate" name="mscDate-${counter}">
+                                            <input type="text" placeholder="Details" class="form-control col-md-4 miscDetails" name="Details-${counter}">
+                                            <input type="text" placeholder="Amount" class="form-control col-md-2 miscExpenses" name="Expenses-${counter}" />
+                                     
+                                            <a  class="btn btn-primary btnMscDel" style='float:right'>
+                                               <i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </li>`;
+
+        $('#mscItem').append(row);
+
+        if (counter !== 0)
+        {
+            var newCounter = counter - 1;
+
+            var mscDate = $('[name=mscDate-' + newCounter + ']').val();
+            var mscDetails = $('[name=Details-' + newCounter+']').val();
+            var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
+
+            var msc = {
+                date: mscDate,
+                details: mscDetails,
+                expnses: mscExpenses
+            };
+            mscList.push(msc);
+            console.log(mscList);
+
+            //var rowTable = `<tr>
+            //                            <td class="miscDetails">${mscDate}</td>
+            //                            <td class="miscDate">${mscDetails}</td>
+            //                            <td class="miscExpenses">${mscExpenses}</td>
+
+            //                            <td>
+            //                               <a class="btnDelete" title="Delete">
+            //    <i class="fas fa-trash"></i>
+            //    </a>
+
+            //                            </td>
+            //                        </tr>`;
+
+
+            //$('.mscList').append(rowTable);
+        
+        }
+        counter++;
+
+
+    });
+
+    $("ul.order-list").on("click", ".btnMscDel", function (event) {
+        $(this).closest("li").remove();
+        counter -= 1;
+    });
+});
+
+function calculateMscRow(row) {
+    var price = +row.find('input[name^="miscExpenses"]').val();
+
+}
+
+function calculateMscGrandTotal() {
+    var grandTotal = 0;
+    $("li.order-list").find('input[name^="miscExpenses"]').each(function () {
+        grandTotal += +$(this).val();
+    });
+    $("#TotalExpenses").text(grandTotal.toFixed(2));
+}
+
 
 function calculateSum() {
     var sum = 0;
@@ -74,7 +185,7 @@ function calculateSum() {
     });
 
     $('#TotalExpenses').val(sum);
-   
+
 };
 
 $('#Items').on('click', '.btnDelete', function () {
@@ -84,7 +195,7 @@ $('#Items').on('click', '.btnDelete', function () {
 
 $(document).ready(function () {
 
-  
+
 
     // $("#btnSubmit").click(function (e) {
     $("#form").submit(function (e) {
@@ -149,7 +260,7 @@ $(document).ready(function () {
                                 alert(data.message);
                             }
                             window.location.href = '/Expenses/Index';
-                            
+
                         },
                         error: function (error) {
                             console.log(error);
