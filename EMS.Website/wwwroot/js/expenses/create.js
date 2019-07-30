@@ -62,9 +62,9 @@ $("#btnAdd").on('click', function () {
                             `;
             $.each(mscList, function (index, value) {
                 subRow += `<tr>
-                                        <td class="miscDetails">${value.date}</td>
-                                        <td class="miscDate">${value.details}</td>
-                                        <td class="miscExpenses">${value.expenses}</td>
+                                        <td class="miscDetails">${value.Date}</td>
+                                        <td class="miscDate">${value.Comment}</td>
+                                        <td class="miscExpenses">${value.Price}</td>
 
                                       
                                     </tr>`;
@@ -108,7 +108,7 @@ $("#btnAdd").on('click', function () {
                                         <div class="row">
                                             <input type="date" placeholder="Date" class="form-control col-md-4 miscDate" name="mscDate-${counter}">
                                             <input type="text" placeholder="Details" class="form-control col-md-4 miscDetails" name="Details-${counter}">
-                                            <input type="text" placeholder="Amount" class="form-control col-md-2 miscExpenses" name="Expenses-${counter}" />
+                                            <input type="number" placeholder="Amount" class="form-control col-md-2 miscExpenses" name="Expenses-${counter}" />
                                      
                                             <a  class="btn btn-primary btnMscDel" style='float:right'>
                                                <i class="fa fa-trash"></i>
@@ -156,9 +156,9 @@ $("#btnAdd").on('click', function () {
                 var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
 
                 var msc = {
-                    date: mscDate,
-                    details: mscDetails,
-                    expenses: mscExpenses
+                    Date: mscDate,
+                    Comment: mscDetails,
+                    Price: mscExpenses
                 };
                 mscList.push(msc);
                 console.log(mscList);
@@ -171,7 +171,8 @@ $("#btnAdd").on('click', function () {
         counter -= 1;
     });
 
-    $('input[name^="Expenses"]').change(function () {
+    $('ul.order-list').on("change",".miscExpenses",function () {
+        console.log($('.miscExpenses').val());
         calculateMscGrandTotal();
     });
 });
@@ -238,15 +239,31 @@ $(document).ready(function () {
                 date: $('.date', this).text(),
                 expenses: parseFloat($('.expenses', this).text())
             };
-
+            orderItem.MiscExpensesDtos = [];
+            
+            $(this).find('table.mscList tr').each(function (i, value) {
+                console.log($('.details', this).text());
+                newCounter = 0;
+                var mscDate = $('[name=mscDate-' + newCounter + ']').val();
+                var mscDetails = $('[name=Details-' + newCounter + ']',).val();
+                var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
+                console.log(mscDate);
+               
+                var msc = {
+                    Date: mscDate,
+                    Comment: mscDetails,
+                    Price: mscExpenses
+                };
+                newCounter++;
+                orderItem.MiscExpensesDtos.push(msc);
+            });
             object.TravelExpensesDtos.push(orderItem);
         });
 
 
 
         console.log(object);
-        var json = JSON.stringify(object);
-        console.log(json);
+       
         var input = document.getElementById('RecieptFile');
         var files = input.files;
         var fileData = new FormData();

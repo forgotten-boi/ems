@@ -6,6 +6,10 @@ namespace EMS.Entity.DtoModel
 {
     public class TravelExpenseDto
     {
+        public TravelExpenseDto()
+        {
+            this.MiscExpensesDtos = new List<MiscExpenseDto>();
+        }
         [Key]
         public int TravelExpId { get; set; }
         public int TravelID { get; set; }
