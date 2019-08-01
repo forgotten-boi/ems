@@ -33,21 +33,21 @@ $(document).ready(function () {
 
     var mscList = [];
 
-$("#btnAdd").on('click', function () {
+    $("#btnAdd").on('click', function () {
 
-    var date = $('#Date').val();
-    var details = $("#Details option:selected").text();
-    var price = $("#Price").val();
-    var mscDetail = mscList;
+        var date = $('#Date').val();
+        var details = $("#Details option:selected").text();
+        var price = $("#Price").val();
+        var mscDetail = mscList;
 
-    if (date === "" || details === null || price === "") {
-        alert('date, details and price cannot be null');
-    }
-    else {
-        populateMscList();
-        var subRow = '';
-        if (mscList !== undefined && mscList !== null) {
-            subRow += `
+        if (date === "" || details === null || price === "") {
+            alert('date, details and price cannot be null');
+        }
+        else {
+            populateMscList();
+            var subRow = '';
+            if (mscList !== undefined && mscList !== null && mscList.length > 0) {
+                subRow += `
                          <table class="mscList">
                                         <thead>
                                             <tr>
@@ -60,28 +60,26 @@ $("#btnAdd").on('click', function () {
                                         </thead>
                                                 <tbody>
                             `;
-            $.each(mscList, function (index, value) {
-                subRow += `<tr>
+                $.each(mscList, function (index, value) {
+                    subRow += `<tr>
                                         <td class="miscDetails">${value.Date}</td>
                                         <td class="miscDate">${value.Comment}</td>
                                         <td class="miscExpenses">${value.Price}</td>
 
                                       
                                     </tr>`;
-            });
-            subRow += `
+                });
+                subRow += `
                         </tbody>
                                     </table>
                         `
-        }
-        var row = `<tr>
+                mscList = [];
+            }
+            var row = `<tr class='expenserow'>
                                     <td class="date">${date}</td>
                                     <td class="details">${details}
-                                                
-                                                   ${subRow}
-                                               
-                                
                                     </td>
+                                    <td>${subRow}</td>
                                     <td class="expenses">${price}</td>
 
                                     <td>
@@ -92,14 +90,14 @@ $("#btnAdd").on('click', function () {
                                     </td>
                                 </tr>`;
 
-        $('#Items').append(row);
-        calculateSum();
-    }
-    //clearValue();
-});
+            $('#Items').append(row);
+            calculateSum();
+        }
+        //clearValue();
+    });
 
     var counter = 0;
-  
+
 
     $("#btnMisc").on('click', function () {
 
@@ -118,43 +116,42 @@ $("#btnAdd").on('click', function () {
 
         $('#mscItem').append(row);
         calculateMscGrandTotal();
-      
-
-            //var rowTable = `<tr>
-            //                            <td class="miscDetails">${mscDate}</td>
-            //                            <td class="miscDate">${mscDetails}</td>
-            //                            <td class="miscExpenses">${mscExpenses}</td>
-
-            //                            <td>
-            //                               <a class="btnDelete" title="Delete">
-            //    <i class="fas fa-trash"></i>
-            //    </a>
-
-            //                            </td>
-            //                        </tr>`;
 
 
-            //$('.mscList').append(rowTable);
-        
+        //var rowTable = `<tr>
+        //                            <td class="miscDetails">${mscDate}</td>
+        //                            <td class="miscDate">${mscDetails}</td>
+        //                            <td class="miscExpenses">${mscExpenses}</td>
+
+        //                            <td>
+        //                               <a class="btnDelete" title="Delete">
+        //    <i class="fas fa-trash"></i>
+        //    </a>
+
+        //                            </td>
+        //                        </tr>`;
+
+
+        //$('.mscList').append(rowTable);
+
         //}
         counter++;
 
 
     });
 
-   
-  
-    
-    function populateMscList()
-    {
+
+
+
+    function populateMscList() {
         for (var newCounter = 0; newCounter < counter; newCounter++) {
 
-           
 
-                var mscDate = $('[name=mscDate-' + newCounter + ']').val();
-                var mscDetails = $('[name=Details-' + newCounter + ']').val();
-                var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
 
+            var mscDate = $('[name=mscDate-' + newCounter + ']').val();
+            var mscDetails = $('[name=Details-' + newCounter + ']').val();
+            var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
+            if (mscDate !== undefined && mscDetails !== undefined && mscExpenses !== undefined) {
                 var msc = {
                     Date: mscDate,
                     Comment: mscDetails,
@@ -162,7 +159,8 @@ $("#btnAdd").on('click', function () {
                 };
                 mscList.push(msc);
                 console.log(mscList);
-            
+            }
+
         }
     }
 
@@ -171,7 +169,7 @@ $("#btnAdd").on('click', function () {
         counter -= 1;
     });
 
-    $('ul.order-list').on("change",".miscExpenses",function () {
+    $('ul.order-list').on("change", ".miscExpenses", function () {
         console.log($('.miscExpenses').val());
         calculateMscGrandTotal();
     });
@@ -232,7 +230,7 @@ $(document).ready(function () {
         console.log(list);
 
         object.TravelExpensesDtos = [];
-        $('#Items tr').each(function (index, ele) {
+        $('#Items tr.expenserow').each(function (index, ele) {
             var orderItem = {
 
                 details: $('.details', this).text(),
@@ -240,22 +238,24 @@ $(document).ready(function () {
                 expenses: parseFloat($('.expenses', this).text())
             };
             orderItem.MiscExpensesDtos = [];
-            
+             newCounter = 0;
             $(this).find('table.mscList tr').each(function (i, value) {
                 console.log($('.details', this).text());
-                newCounter = 0;
+               
                 var mscDate = $('[name=mscDate-' + newCounter + ']').val();
-                var mscDetails = $('[name=Details-' + newCounter + ']',).val();
+                var mscDetails = $('[name=Details-' + newCounter + ']').val();
                 var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
                 console.log(mscDate);
-               
-                var msc = {
-                    Date: mscDate,
-                    Comment: mscDetails,
-                    Price: mscExpenses
-                };
-                newCounter++;
-                orderItem.MiscExpensesDtos.push(msc);
+                if (mscDate !== undefined && mscDetails !== undefined && mscExpenses !== undefined) 
+                    {
+                        var msc = {
+                            Date: mscDate,
+                            Comment: mscDetails,
+                            Price: mscExpenses
+                        };
+                        newCounter++;
+                        orderItem.MiscExpensesDtos.push(msc);
+                    }
             });
             object.TravelExpensesDtos.push(orderItem);
         });
@@ -263,7 +263,7 @@ $(document).ready(function () {
 
 
         console.log(object);
-       
+
         var input = document.getElementById('RecieptFile');
         var files = input.files;
         var fileData = new FormData();
