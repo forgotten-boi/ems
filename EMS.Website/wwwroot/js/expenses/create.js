@@ -8,7 +8,16 @@
     $('#ExpensesList').hide();
     $('#btnExpenses').click(function () {
         $('#ExpensesList').show();
+        $("#addDetail").hide();
     });
+
+    $('#Details').change(function () {
+        var details = $("#Details option:selected").text();
+        if (details === 'Misc. Expenses (please explain below)' || details === 'Entertainment F&B (please explain below)') {
+            $("#addDetail").show();
+        }
+    });
+
 });
 (function ($) {
     $.fn.serializeFormJSON = function () {
@@ -38,36 +47,31 @@ $(document).ready(function () {
         var date = $('#Date').val();
         var details = $("#Details option:selected").text();
         var price = $("#Price").val();
-        var mscDetail = mscList;
-
+        
         if (date === "" || details === null || price === "") {
             alert('date, details and price cannot be null');
         }
         else {
             populateMscList();
             var subRow = '';
-            if (mscList !== undefined && mscList !== null && mscList.length > 0) {
+            if (mscList && mscList.length) {
                 subRow += `
                          <table class="mscList">
-                                        <thead>
-                                            <tr>
-                                                <th>Detail</th>
-                                                <th>Date</th>
-                                                <th>Amount</th>
-                                                
-                                                
-                                            </tr>
-                                        </thead>
-                                                <tbody>
+                             <thead>
+                                <tr>
+                                    <th>Detail</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                 </tr>
+                              </thead>
+                          <tbody>
                             `;
                 $.each(mscList, function (index, value) {
                     subRow += `<tr>
-                                        <td class="miscDetails">${value.Date}</td>
-                                        <td class="miscDate">${value.Comment}</td>
-                                        <td class="miscExpenses">${value.Price}</td>
-
-                                      
-                                    </tr>`;
+                                   <td class="miscDetails">${value.Date}</td>
+                                   <td class="miscDate">${value.Comment}</td>
+                                   <td class="miscExpenses">${value.Price}</td>
+                               </tr>`;
                 });
                 subRow += `
                         </tbody>
@@ -76,24 +80,23 @@ $(document).ready(function () {
                 mscList = [];
             }
             var row = `<tr class='expenserow'>
-                                    <td class="date">${date}</td>
-                                    <td class="details">${details}
-                                    </td>
-                                    <td>${subRow}</td>
-                                    <td class="expenses">${price}</td>
+                           <td class="date">${date}</td>
+                           <td class="details">${details}
+                           </td>
+                           <td>${subRow}</td>
+                           <td class="expenses">${price}</td>
 
-                                    <td>
-                                       <a class="btnDelete" title="Delete">
-            <i class="fas fa-trash"></i>
-            </a>
-
-                                    </td>
-                                </tr>`;
+                           <td>
+                                <a class="btnDelete" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                       </tr>`;
 
             $('#Items').append(row);
             calculateSum();
         }
-        //clearValue();
+      
     });
 
     var counter = 0;
@@ -103,38 +106,21 @@ $(document).ready(function () {
 
 
         var row = ` <li >
-                                        <div class="row">
-                                            <input type="date" placeholder="Date" class="form-control col-md-4 miscDate" name="mscDate-${counter}">
-                                            <input type="text" placeholder="Details" class="form-control col-md-4 miscDetails" name="Details-${counter}">
-                                            <input type="number" placeholder="Amount" class="form-control col-md-2 miscExpenses" name="Expenses-${counter}" />
-                                     
-                                            <a  class="btn btn-primary btnMscDel" style='float:right'>
-                                               <i class="fa fa-trash"></i>
-                                            </a>
-                                        </div>
-                                    </li>`;
+                        <div class="row">
+                            <input type="date" placeholder="Date" class="form-control col-md-4 miscDate" name="mscDate-${counter}">
+                            <input type="text" placeholder="Details" class="form-control col-md-4 miscDetails" name="Details-${counter}">
+                            <input type="number" placeholder="Amount" class="form-control col-md-2 miscExpenses" name="Expenses-${counter}" />
+                            
+                            <a  class="btn btn-primary btnMscDel" style='float:right'>
+                                <i class="fa fa-trash"></i>
+                            </a>
+                         </div>
+                     </li>`;
 
         $('#mscItem').append(row);
         calculateMscGrandTotal();
 
 
-        //var rowTable = `<tr>
-        //                            <td class="miscDetails">${mscDate}</td>
-        //                            <td class="miscDate">${mscDetails}</td>
-        //                            <td class="miscExpenses">${mscExpenses}</td>
-
-        //                            <td>
-        //                               <a class="btnDelete" title="Delete">
-        //    <i class="fas fa-trash"></i>
-        //    </a>
-
-        //                            </td>
-        //                        </tr>`;
-
-
-        //$('.mscList').append(rowTable);
-
-        //}
         counter++;
 
 
@@ -151,7 +137,7 @@ $(document).ready(function () {
             var mscDate = $('[name=mscDate-' + newCounter + ']').val();
             var mscDetails = $('[name=Details-' + newCounter + ']').val();
             var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
-            if (mscDate !== undefined && mscDetails !== undefined && mscExpenses !== undefined) {
+            if (mscDate && mscDetails && mscExpenses ) {
                 var msc = {
                     Date: mscDate,
                     Comment: mscDetails,
@@ -246,7 +232,7 @@ $(document).ready(function () {
                 var mscDetails = $('[name=Details-' + newCounter + ']').val();
                 var mscExpenses = $('[name=Expenses-' + newCounter + ']').val();
                 console.log(mscDate);
-                if (mscDate !== undefined && mscDetails !== undefined && mscExpenses !== undefined) 
+                if (mscDate && mscDetails && mscExpenses ) 
                     {
                         var msc = {
                             Date: mscDate,
