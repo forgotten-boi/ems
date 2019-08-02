@@ -41,7 +41,7 @@ namespace EMS.Entity.DtoModel
         public DateTime Date
         {
             get { return UpdateDate; }
-            set { UpdateDate = DateTime.Now; }
+            set { UpdateDate = value == default ? DateTime.Now : value; }
         }
 
         [DataType(DataType.Date)]

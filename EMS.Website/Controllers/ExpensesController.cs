@@ -100,7 +100,13 @@ namespace EMS.Website.Controllers
 
                 travelInfo.Date = DateTime.Now;
                 travelInfo.TravelExpenses = travelExp;
-                travelInfo.IsApproved = false;
+                travelInfo.IsApproved = null;
+
+                foreach (var travel in travelExp.Where(p=>p.Details.Equals("Misc. Expenses (please explain below)") || p.Details.Equals("Entertainment F&B (please explain below)")))
+                {
+                    travel.MiscExpenses = _mapper.Map<ICollection<MiscExpenseDto>, ICollection<MiscExpenses>>(travelModel.TravelExpensesDtos.FirstOrDefault(p => p.Details.Equals(travel.Details)).MiscExpensesDtos.ToList());
+                }
+
                 await _travelService.AddAsync(travelInfo);
 
                 await SendMailToTeamLeadAsync();
@@ -180,7 +186,7 @@ namespace EMS.Website.Controllers
                     var travelInfo = _mapper.Map<TravelDto, TravelInfo>(travelModel);
                     travelInfo.RecieptDoc = recieptPath;
                     travelInfo.Date = DateTime.Now;
-                    travelInfo.IsApproved = false;
+                    travelInfo.IsApproved = null;
 
                     await _travelService.UpdateAsync(travelInfo);
                 }

@@ -181,6 +181,7 @@
                             <td>Details</td>
                             <td>Date</td>
                             <td>Price</td>
+                            <td>Additional Info</td>
 
 
                         </tr>
@@ -192,6 +193,30 @@
                                 <td class="Details">@item.Details</td>
                                 <td class="Date">@item.Date</td>
                                 <td class="Expenses">@item.Expenses</td>
+                                <td class="MiscExpenses">
+                                @if(item.MiscExpensesDtos !=null && item.MiscExpensesDtos.Count > 0)
+                                {
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Comment</th>
+                                                <th>Date</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var expenseDetail in item.MiscExpensesDtos)
+                                            {
+                                            <tr>
+                                                <td>@expenseDetail.Comment</td>
+                                                <td>@expenseDetail.Date</td>
+                                                <td>@expenseDetail.Price</td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                 }
+                                    </td>
                             </tr>
                         }
                     </tbody>
