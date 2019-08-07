@@ -18,6 +18,10 @@ using System.IO.Compression;
 using EMS.Services.IServices;
 using EMS.Services.Services;
 
+using jsreport.AspNetCore;
+using jsreport.Local;
+using jsreport.Binary;
+
 namespace EMS.Website
 {
     public class Startup
@@ -81,6 +85,10 @@ namespace EMS.Website
             //logger.LogCritical("hello nlog");
             #endregion
 
+            services.AddJsReport(new LocalReporting()
+                .UseBinary(JsReportBinary.GetBinary())
+                .AsUtility()
+                .Create());
 
             services.AddSingleton<UserContext>();
             var mappingConfig = new MapperConfiguration(mc =>
@@ -102,7 +110,7 @@ namespace EMS.Website
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
             });
-          
+
 
             services.AddResponseCompression();
             services.Configure<GzipCompressionProviderOptions>
@@ -117,7 +125,7 @@ namespace EMS.Website
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             env.ConfigureNLog("nlog.config");
-          
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -140,6 +148,6 @@ namespace EMS.Website
             });
         }
 
-        
+
     }
 }

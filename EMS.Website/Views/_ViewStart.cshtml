@@ -3,9 +3,14 @@
     var controller = ViewContext.RouteData.Values["Controller"].ToString();
     var action = ViewContext.RouteData.Values["Action"].ToString();
     string cLayout = "";
-    if(controller.ToLower() == "account")
+
+    if (controller.ToLower() == "account")
     {
         cLayout = "~/Views/Shared/_BlankLayout.cshtml";
+    }
+    else if (action.ToLower() == "invoice")
+    {
+        cLayout = "~/Views/Shared/_ReportLayout.cshtml";
     }
     else
     {

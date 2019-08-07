@@ -103,7 +103,8 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.TravelId" title="Edit"><i class="fas fa-edit"></i></a> |
-                    @*<a asp-action="Details" asp-route-id="@item.TravelId" title="Details"><i class="fas fa-info"></i></a> |*@
+                    <a asp-action="Invoice" asp-route-id="@item.TravelId" title="Report"><i class="fas fa-file-pdf"
+                                                                                            ></i></a> |
                     <a href="#" onclick="DeleteExpenses(@item.TravelId)" title="Delete"><i class="fas fa-trash"></i></a> |
                     <a href="@item.RecieptDoc" title="File download"><i class="fas fa-file-download"></i></a>
                 </td>

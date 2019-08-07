@@ -20,6 +20,7 @@ using EMS.Website.Models;
 using Microsoft.Extensions.Logging;
 using EMS.Services.IServices;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using jsreport.AspNetCore;
 
 namespace EMS.Website.Controllers
 {
@@ -40,13 +41,17 @@ namespace EMS.Website.Controllers
 
         public IApprovalInfoService _approvalInfoService { get; set; }
 
+        public IJsReportMVCService _jsReportMVCService { get; }
+
         public ExpensesController(ITravelInfoService travelService, IMapper mapper, IEmailSender emailSender,
                    UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IApprovalInfoService approvalInfoService,
             IMstExpensesService mstExpensesService,
             ITravelExpensesService travelExpService,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IJsReportMVCService jsReportMVCService
+            )
         {
             _travelService = travelService;
             _mapper = mapper;
@@ -57,6 +62,7 @@ namespace EMS.Website.Controllers
             _logger = logger;
             _mstExpensesService = mstExpensesService;
             _travelExpService = travelExpService;
+            _jsReportMVCService = jsReportMVCService;
         }
 
 
@@ -141,6 +147,33 @@ namespace EMS.Website.Controllers
             }
             return null;
         }
+
+        [MiddlewareFilter(typeof(JsReportPipeline))]
+        public async Task<IActionResult> Invoice(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var travelInfo = await _travelService
+                .FindByIdAsync(m => m.ID == id);
+            var travelExpenses = await _travelExpService.GetFilteredAsync(p => p.TravelID == travelInfo.ID);
+
+            if (travelInfo == null)
+            {
+                return NotFound();
+            }
+            var travelDto = _mapper.Map<TravelInfo, TravelDto>(travelInfo);
+
+            travelDto.TravelExpensesDtos = _mapper.Map<ICollection<TravelExpenses>, ICollection<TravelExpenseDto>>(travelExpenses.ToList());
+
+            HttpContext.JsReportFeature().Recipe(jsreport.Types.Recipe.ChromePdf);
+
+            return View("Edit",travelDto);
+        }
+
+
 
         // GET: Expenses/Edit/5
         public async Task<IActionResult> Edit(int? id)
