@@ -2,7 +2,7 @@ repo_name: forgotten-boi/ems
 report_id: d78c4b5b8824584caa66a4e4c69e3665
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-31T12:08:28+00:00'
+timestamp: '2024-02-29T19:45:31+00:00'
 requested_by: forgotten-boi
 provider: github
 branch: master
@@ -140,7 +140,7 @@ tools:
   last_updated_by: Pitambar Jha
   last_updated_on: 2019-07-24 10:11:23.000000000 Z
 - name: Entity Framework Core
-  description: 'Lightweight and cross-platform version of the popular Entity Framework '
+  description: Lightweight and cross-platform version of the popular Entity Framework
   website_url: https://docs.microsoft.com/en-us/ef/core/
   license: MIT
   open_source: true
